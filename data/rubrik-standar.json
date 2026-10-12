@@ -1,0 +1,710 @@
+{
+ "paket": [
+  {
+   "kode": "D3-STANDAR",
+   "program": "D3",
+   "keterangan": "Rubrik standar Pedoman OSCE Vokasi Gizi 2023"
+  },
+  {
+   "kode": "STR-STANDAR",
+   "program": "STR",
+   "keterangan": "Rubrik standar Pedoman OSCE Vokasi Gizi 2023"
+  }
+ ],
+ "station": [
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 1,
+   "judul": "Endokrin atau Sistem Perkemihan",
+   "kasus": "DM Tipe 2",
+   "istirahat": "TIDAK",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 2,
+   "judul": "Sistem Pencernaan",
+   "kasus": "Gastritis",
+   "istirahat": "TIDAK",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 3,
+   "judul": "Sistem Kardiovaskuler atau Neuromuskuler",
+   "kasus": "Dislipidemia",
+   "istirahat": "TIDAK",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 4,
+   "judul": "ISTIRAHAT",
+   "kasus": "",
+   "istirahat": "YA",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 5,
+   "judul": "Masalah Gizi pada Anak dan Remaja",
+   "kasus": "Balita Stunting",
+   "istirahat": "TIDAK",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 6,
+   "judul": "Masalah Gizi pada Ibu",
+   "kasus": "Ibu Hamil KEK",
+   "istirahat": "TIDAK",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 7,
+   "judul": "Penyelenggaraan Makanan",
+   "kasus": "Penyelenggaraan Makanan di Rumah Sakit",
+   "istirahat": "TIDAK",
+   "waktu": 10
+  },
+  {
+   "paket": "D3-STANDAR",
+   "program": "D3",
+   "no": 8,
+   "judul": "ISTIRAHAT",
+   "kasus": "",
+   "istirahat": "YA",
+   "waktu": 10
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 1,
+   "judul": "Endokrin",
+   "kasus": "DM Tipe 2",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 2,
+   "judul": "Sistem Perkemihan",
+   "kasus": "Gagal Ginjal Kronik (GGK)",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 3,
+   "judul": "Sistem Pencernaan atau Pernapasan",
+   "kasus": "Tipoid",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 4,
+   "judul": "ISTIRAHAT",
+   "kasus": "",
+   "istirahat": "YA",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 5,
+   "judul": "Sistem Kardiovaskuler atau Neuromuskuler",
+   "kasus": "Pasca Stroke",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 6,
+   "judul": "Masalah Gizi pada Anak dan Remaja",
+   "kasus": "Anemia Remaja",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 7,
+   "judul": "Masalah Gizi pada Ibu",
+   "kasus": "Ibu Hamil Hipertensi",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 8,
+   "judul": "Penyelenggaraan Makanan",
+   "kasus": "Penyelenggaraan Makanan di Katering",
+   "istirahat": "TIDAK",
+   "waktu": 12
+  },
+  {
+   "paket": "STR-STANDAR",
+   "program": "STR",
+   "no": 9,
+   "judul": "ISTIRAHAT",
+   "kasus": "",
+   "istirahat": "YA",
+   "waktu": 12
+  }
+ ],
+ "rubrik": [
+  {
+   "paket": "D3-STANDAR",
+   "station": 1,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s0": "Tidak melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s1": "Melakukan asesmen gizi menggunakan 1 dari 3 data/informasi, yaitu: 1) data subjektif riwayat diet; 2) data subjektif riwayat penyakit; 3) data obyektif biokimia",
+   "s2": "Melakukan asesmen gizi menggunakan 2 dari 3 data/informasi, yaitu: 1) data subjektif riwayat diet; 2) data subjektif riwayat penyakit; 3) data obyektif biokimia",
+   "s3": "Melakukan asesmen gizi menggunakan 3 data/informasi, yaitu: 1) data subjektif riwayat diet; 2) data subjektif riwayat penyakit; 3) data obyektif biokimia",
+   "bobot": 1
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 1,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus DM Tipe 2",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus DM Tipe 2",
+   "s1": "Melakukan 1-2 dari 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet DM Tipe 2; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "s2": "Melakukan 3-4 dari 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet DM Tipe 2; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "s3": "Melakukan 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet DM Tipe 2; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 1,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan pendokumentasian asuhan gizi (ADIME) kasus DM Tipe 2",
+   "s0": "Tidak melakukan pendokumentasian asuhan gizi untuk kasus DM Tipe 2",
+   "s1": "Melakukan pendokumentasian asuhan gizi untuk 1-2 dari 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "s2": "Melakukan pendokumentasian asuhan gizi untuk 3-4 dari 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "s3": "Melakukan pendokumentasian asuhan gizi untuk 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "bobot": 1
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 1,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 2,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan/menentukan intervensi pemberian makanan",
+   "s0": "Tidak menentukan intervensi pemberian makanan yang tepat",
+   "s1": "Menentukan intervensi pemberian makanan hanya 1 dari 4 aspek: 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "s2": "Menentukan intervensi pemberian makanan hanya 2-3 dari 4 aspek: 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "s3": "Menentukan intervensi pemberian makanan semua aspek (4 aspek): 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 2,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus Gastritis",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus Gastritis",
+   "s1": "Melakukan 1-2 dari 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet Gastritis; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "s2": "Melakukan 3-4 dari 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet Gastritis; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "s3": "Melakukan 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet Gastritis; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 2,
+   "butir": 3,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 3,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 3,
+   "butir": 2,
+   "kompetensi": "Mampu menetapkan diagnosis gizi",
+   "s0": "Tidak menetapkan diagnosis gizi",
+   "s1": "Menetapkan diagnosis gizi untuk 1 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s2": "Menetapkan diagnosis gizi untuk 2 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s3": "Menetapkan diagnosis gizi untuk 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "bobot": 1
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 3,
+   "butir": 3,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 5,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 5,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus Balita Stunting",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus Balita Stunting",
+   "s1": "Melakukan 1-2 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "s2": "Melakukan 3-4 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "s3": "Melakukan 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 5,
+   "butir": 3,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 6,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia, serta menetapkan rumusan diagnosis gizi",
+   "s0": "Tidak melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s1": "Melakukan asesmen gizi melalui 1-3 dari 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "s2": "Melakukan asesmen gizi melalui 4-5 dari 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "s3": "Melakukan asesmen gizi melalui 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "bobot": 1
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 6,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 6,
+   "butir": 3,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 7,
+   "butir": 1,
+   "kompetensi": "Mampu menetapkan diagnosis gizi (berdasarkan perilaku makan dan asupan gizi)",
+   "s0": "Tidak menetapkan diagnosis gizi berdasarkan perilaku makan dan asupan gizi",
+   "s1": "Menetapkan diagnosis gizi berdasarkan perilaku makan dan asupan gizi untuk 1 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s2": "Menetapkan diagnosis gizi berdasarkan perilaku makan dan asupan gizi untuk 2 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s3": "Menetapkan diagnosis gizi berdasarkan perilaku makan dan asupan gizi untuk 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "bobot": 1
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 7,
+   "butir": 2,
+   "kompetensi": "Mampu menentukan intervensi pemberian makanan melalui penilaian sisa makanan metode Comstock",
+   "s0": "Tidak menentukan intervensi pemberian makanan melalui penilaian sisa makanan dengan metode Comstock 6 poin",
+   "s1": "Melakukan penilaian sisa makanan metode Comstock dengan 1-2 dari 5 langkah yang tepat: 1) Menyiapkan formulir penilaian sisa makanan metode Comstock 6 poin; 2) Menyiapkan peralatan yang diperlukan (sendok, garpu, alat tulis); 3) Menilai standar porsi makanan sebagai gold standard dari contoh yang disajikan di plato-1; 4) Melakukan penilaian sisa makanan pasien untuk 1 kali makan yang disajikan di plato-2; 5) Menganalisis sisa makanan berdasarkan jenis makanan dan keseluruhan makanan untuk 1 kali makan",
+   "s2": "Melakukan penilaian sisa makanan metode Comstock dengan 3-4 dari 5 langkah yang tepat: 1) Menyiapkan formulir penilaian sisa makanan metode Comstock 6 poin; 2) Menyiapkan peralatan yang diperlukan (sendok, garpu, alat tulis); 3) Menilai standar porsi makanan sebagai gold standard dari contoh yang disajikan di plato-1; 4) Melakukan penilaian sisa makanan pasien untuk 1 kali makan yang disajikan di plato-2; 5) Menganalisis sisa makanan berdasarkan jenis makanan dan keseluruhan makanan untuk 1 kali makan",
+   "s3": "Melakukan penilaian sisa makanan metode Comstock dengan semua (5) langkah yang tepat: 1) Menyiapkan formulir penilaian sisa makanan metode Comstock 6 poin; 2) Menyiapkan peralatan yang diperlukan (sendok, garpu, alat tulis); 3) Menilai standar porsi makanan sebagai gold standard dari contoh yang disajikan di plato-1; 4) Melakukan penilaian sisa makanan pasien untuk 1 kali makan yang disajikan di plato-2; 5) Menganalisis sisa makanan berdasarkan jenis makanan dan keseluruhan makanan untuk 1 kali makan",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 7,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus Penyelenggaraan Makanan di RS (berdasarkan hasil penilaian sisa makanan)",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus Penyelenggaraan Makanan di RS",
+   "s1": "Melakukan 1-2 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 2) Menyampaikan masalah gizi berdasarkan asupan gizi dari makanan yang dikonsumsi; 3) Mendiskusikan perubahan pola makan mengikuti hasil penilaian sisa makanan dan perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan",
+   "s2": "Melakukan 3-4 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 2) Menyampaikan masalah gizi berdasarkan asupan gizi dari makanan yang dikonsumsi; 3) Mendiskusikan perubahan pola makan mengikuti hasil penilaian sisa makanan dan perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan",
+   "s3": "Melakukan 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 2) Menyampaikan masalah gizi berdasarkan asupan gizi dari makanan yang dikonsumsi; 3) Mendiskusikan perubahan pola makan mengikuti hasil penilaian sisa makanan dan perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan, berdasarkan hasil penilaian intervensi pemberian makanan melalui penilaian sisa makanan",
+   "bobot": 3
+  },
+  {
+   "paket": "D3-STANDAR",
+   "station": 7,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 1,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 1,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan/menentukan intervensi pemberian makanan",
+   "s0": "Tidak menentukan intervensi pemberian makanan yang tepat",
+   "s1": "Menentukan intervensi pemberian makanan hanya 1 dari 4 aspek: 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "s2": "Menentukan intervensi pemberian makanan hanya 2-3 dari 4 aspek: 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "s3": "Menentukan intervensi pemberian makanan semua aspek (4 aspek): 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 1,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan kolaborasi interprofesional",
+   "s0": "Tidak melakukan kolaborasi dengan profesi atau pihak lain dalam penanganan kasus, hanya bekerja sendiri",
+   "s1": "1) Melakukan kolaborasi dengan profesi atau pihak lain dalam penanganan kasus; 2) Mendapat penolakan dari profesi/pihak lain, atau terdapat penilaian negatif dari profesi/pihak lain",
+   "s2": "1) Melakukan kolaborasi dengan profesi atau pihak lain dalam penanganan kasus; 2) Diterima oleh pihak lain, tetapi ada komplain atau belum mendapatkan kesepakatan menjadi tim bersama penanganan kasus berikutnya (bersifat insidental)",
+   "s3": "1) Melakukan kolaborasi dengan profesi atau pihak lain dalam penanganan kasus; 2) Tidak ada komplain dan dapat diterima dalam kesepakatan sebagai tim bersama penanganan kasus dengan profesi/pihak lain selanjutnya",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 1,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 2,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s0": "Tidak melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s1": "Melakukan asesmen gizi menggunakan 1 dari 3 data/informasi, yaitu: 1) data subjektif riwayat diet; 2) data subjektif riwayat penyakit; 3) data obyektif biokimia",
+   "s2": "Melakukan asesmen gizi menggunakan 2 dari 3 data/informasi, yaitu: 1) data subjektif riwayat diet; 2) data subjektif riwayat penyakit; 3) data obyektif biokimia",
+   "s3": "Melakukan asesmen gizi menggunakan 3 data/informasi, yaitu: 1) data subjektif riwayat diet; 2) data subjektif riwayat penyakit; 3) data obyektif biokimia",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 2,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 2,
+   "butir": 3,
+   "kompetensi": "Mampu menetapkan diagnosis gizi",
+   "s0": "Tidak menetapkan diagnosis gizi",
+   "s1": "Menetapkan diagnosis gizi untuk 1 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s2": "Menetapkan diagnosis gizi untuk 2 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s3": "Menetapkan diagnosis gizi untuk 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 2,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 3,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 3,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus Tipoid",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus Tipoid",
+   "s1": "Melakukan 1-2 dari 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet Tipoid; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "s2": "Melakukan 3-4 dari 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet Tipoid; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "s3": "Melakukan 5 langkah edukasi gizi dengan tepat: 1) Mempelajari masalah gizi pasien sesuai diagnosis gizi; 2) Menjelaskan tujuan diet pasien menggunakan media leaflet Tipoid; 3) Menjelaskan makanan yang boleh dikonsumsi menggunakan media food model; 4) Menjelaskan makanan yang tidak boleh dikonsumsi menggunakan media food model; 5) Melakukan evaluasi edukasi gizi dengan memberikan pertanyaan kepada pasien",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 3,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan pendokumentasian asuhan gizi (ADIME) kasus Tipoid",
+   "s0": "Tidak melakukan pendokumentasian asuhan gizi untuk kasus Tipoid",
+   "s1": "Melakukan pendokumentasian asuhan gizi untuk 1-2 dari 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "s2": "Melakukan pendokumentasian asuhan gizi untuk 3-4 dari 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "s3": "Melakukan pendokumentasian asuhan gizi untuk 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 3,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 5,
+   "butir": 1,
+   "kompetensi": "Mampu menetapkan diagnosis gizi",
+   "s0": "Tidak menetapkan diagnosis gizi",
+   "s1": "Menetapkan diagnosis gizi untuk 1 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s2": "Menetapkan diagnosis gizi untuk 2 dari 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "s3": "Menetapkan diagnosis gizi untuk 3 aspek dengan benar: 1) Menetapkan Problem gizi (P); 2) Menetapkan Etiologi dari problem gizi (E); 3) Menetapkan Simptom atau tanda gizi (S)",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 5,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan/menentukan intervensi pemberian makanan",
+   "s0": "Tidak menentukan intervensi pemberian makanan yang tepat",
+   "s1": "Menentukan intervensi pemberian makanan hanya 1 dari 4 aspek: 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "s2": "Menentukan intervensi pemberian makanan hanya 2-3 dari 4 aspek: 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "s3": "Menentukan intervensi pemberian makanan semua aspek (4 aspek): 1) Jenis diet; 2) Bentuk makanan; 3) Cara pemberian/rute makanan; 4) Prinsip diet",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 5,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan pendokumentasian asuhan gizi (ADIME) kasus Pasca Stroke",
+   "s0": "Tidak melakukan pendokumentasian asuhan gizi untuk kasus Pasca Stroke",
+   "s1": "Melakukan pendokumentasian asuhan gizi untuk 1-2 dari 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "s2": "Melakukan pendokumentasian asuhan gizi untuk 3-4 dari 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "s3": "Melakukan pendokumentasian asuhan gizi untuk 5 aspek (ADIME): 1) Dokumentasi asesmen/pengkajian gizi; 2) Dokumentasi diagnosis gizi; 3) Dokumentasi intervensi gizi dan intervensi edukasi gizi; 4) Dokumentasi monitoring data ABCD (Antropometri, Biokimia, Clinik, Diet) sesuai data dominan kasus; 5) Dokumentasi evaluasi asuhan gizi",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 5,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 6,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia, serta menetapkan rumusan diagnosis gizi",
+   "s0": "Tidak melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s1": "Melakukan asesmen gizi melalui 1-3 dari 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "s2": "Melakukan asesmen gizi melalui 4-5 dari 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "s3": "Melakukan asesmen gizi melalui 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 6,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan intervensi pemberian makanan (penyusunan menu sehari)",
+   "s0": "Tidak dapat menentukan intervensi pemberian makanan yang tepat",
+   "s1": "Melakukan intervensi pemberian makanan hanya 1-3 dari 6 aspek: 1) Menyiapkan form dalam penyusunan menu sehari; 2) Menggunakan TKPI atau sejenisnya untuk menentukan bahan makanan yang disarankan untuk dikonsumsi setiap hari; 3) Memanfaatkan buku bahan penukar atau konversi ke URT untuk menerjemahkan jumlah bahan yang dikonsumsi; 4) Menanyakan pantangan makanan yang harus dihindari maupun makanan yang disukai; 5) Melakukan pembagian waktu makan dan makanan selingan dalam menu makan sehari; 6) Mempertimbangkan bahan makanan yang disarankan dan yang harus dihindari sesuai prinsip diet yang diberikan",
+   "s2": "Melakukan intervensi pemberian makanan hanya 4-5 dari 6 aspek: 1) Menyiapkan form dalam penyusunan menu sehari; 2) Menggunakan TKPI atau sejenisnya untuk menentukan bahan makanan yang disarankan untuk dikonsumsi setiap hari; 3) Memanfaatkan buku bahan penukar atau konversi ke URT untuk menerjemahkan jumlah bahan yang dikonsumsi; 4) Menanyakan pantangan makanan yang harus dihindari maupun makanan yang disukai; 5) Melakukan pembagian waktu makan dan makanan selingan dalam menu makan sehari; 6) Mempertimbangkan bahan makanan yang disarankan dan yang harus dihindari sesuai prinsip diet yang diberikan",
+   "s3": "Melakukan intervensi pemberian makanan yang terdiri dari 6 aspek: 1) Menyiapkan form dalam penyusunan menu sehari; 2) Menggunakan TKPI atau sejenisnya untuk menentukan bahan makanan yang disarankan untuk dikonsumsi setiap hari; 3) Memanfaatkan buku bahan penukar atau konversi ke URT untuk menerjemahkan jumlah bahan yang dikonsumsi; 4) Menanyakan pantangan makanan yang harus dihindari maupun makanan yang disukai; 5) Melakukan pembagian waktu makan dan makanan selingan dalam menu makan sehari; 6) Mempertimbangkan bahan makanan yang disarankan dan yang harus dihindari sesuai prinsip diet yang diberikan",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 6,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus Anemia Remaja",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus Anemia Remaja",
+   "s1": "Melakukan 1-2 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "s2": "Melakukan 3-4 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "s3": "Melakukan 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 6,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 7,
+   "butir": 1,
+   "kompetensi": "Mampu melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia, serta menetapkan rumusan diagnosis gizi",
+   "s0": "Tidak melakukan asesmen gizi data subjektif (riwayat diet, riwayat penyakit) dan data obyektif biokimia",
+   "s1": "Melakukan asesmen gizi melalui 1-3 dari 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "s2": "Melakukan asesmen gizi melalui 4-5 dari 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "s3": "Melakukan asesmen gizi melalui 6 data/informasi dan menetapkan rumusan diagnosis gizi, yaitu: 1) Menyatakan masalah gizi berdasarkan pemeriksaan biokimia terkait gizi; 2) Menyatakan masalah gizi berdasarkan data pemeriksaan fisik terkait gizi; 3) Menyatakan masalah gizi berdasarkan analisis konsumsi makanan; 4) Menyatakan masalah gizi berdasarkan data riwayat pasien; 5) Mengidentifikasi etiologi masalah gizi; 6) Mengidentifikasi sign dan symptoms penunjuk spesifik masalah gizi; 7) Menyatakan rumusan diagnosis gizi dengan format PES (problem-etiologi-sign/symptom)",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 7,
+   "butir": 2,
+   "kompetensi": "Mampu melakukan pengukuran antropometri (BB dan TB) dan pengumpulan data objektif (pemeriksaan fisik keadaan umum, pemeriksaan klinis: tekanan darah dan suhu tubuh)",
+   "s0": "Tidak melakukan pengukuran antropometri (BB dan TB) dan tidak mengumpulkan data objektif (pemeriksaan fisik keadaan umum dan pemeriksaan klinis seperti tekanan darah dan suhu tubuh)",
+   "s1": "Melakukan 1 pengukuran antropometri (BB atau TB) dengan benar sesuai SOP; DAN melakukan pengumpulan 1 dari 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s2": "Melakukan 2 pengukuran antropometri (BB dan TB), salah satunya benar sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "s3": "Melakukan 2 pengukuran antropometri (BB dan TB) dengan benar keduanya sesuai SOP; DAN melakukan pengumpulan 2 data objektif: 1) pemeriksaan fisik keadaan umum pasien; 2) pemeriksaan klinis (tekanan darah, suhu tubuh)",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 7,
+   "butir": 3,
+   "kompetensi": "Mampu melakukan edukasi gizi terkait kasus Ibu Hamil Hipertensi",
+   "s0": "Tidak melakukan edukasi gizi terkait kasus Ibu Hamil Hipertensi",
+   "s1": "Melakukan 1-2 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "s2": "Melakukan 3-4 dari 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "s3": "Melakukan 6 langkah edukasi gizi dengan tepat: 1) Menyampaikan masalah gizi berdasarkan pemeriksaan fisik, klinik, dan biokimia; 2) Menyampaikan masalah gizi berdasarkan asupan gizi; 3) Mendiskusikan perubahan pola makan mengikuti perencanaan menu yang sudah disiapkan (makanan yang boleh dan tidak boleh) dengan alat bantu food model dan leaflet; 4) Mendiskusikan hambatan dan alternatif perubahan pola makan yang dapat dilakukan pasien; 5) Mendiskusikan pola perubahan perilaku berkaitan dengan pola aktivitas dan gaya hidup yang dapat dilakukan klien; 6) Mengukur pengetahuan gizi pasien berkaitan dengan penyakit dan diet yang diberikan",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 7,
+   "butir": 4,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 8,
+   "butir": 1,
+   "kompetensi": "Pendokumentasian: Perencanaan kebutuhan bahan makanan",
+   "s0": "Tidak melakukan perhitungan perencanaan kebutuhan bahan makanan",
+   "s1": "Melakukan perhitungan perencanaan kebutuhan bahan makanan menggunakan: 1) jumlah konsumen; 2) standar porsi",
+   "s2": "Melakukan perhitungan perencanaan kebutuhan bahan makanan menggunakan: 1) jumlah konsumen; 2) standar porsi; 3) frekuensi penggunaan bahan makanan dalam satu siklus menu",
+   "s3": "Melakukan perhitungan perencanaan kebutuhan bahan makanan menggunakan: 1) jumlah konsumen; 2) standar porsi; 3) frekuensi penggunaan bahan makanan dalam satu siklus menu; 4) jumlah putaran siklus menu dalam satu bulan",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 8,
+   "butir": 2,
+   "kompetensi": "Pendokumentasian: Kegiatan sebagai penyelia terhadap kinerja petugas (penerimaan/persiapan/pengolahan/pemorsian/distribusi)",
+   "s0": "Tidak melakukan kegiatan sebagai penyelia terhadap kinerja petugas bagian penerimaan/persiapan/pengolahan/pemorsian/distribusi",
+   "s1": "Melakukan kegiatan sebagai penyelia tanpa menyiapkan/menggunakan instrumen penyelia atau SOP",
+   "s2": "Melakukan kegiatan sebagai penyelia dengan menyiapkan/menggunakan instrumen penyelia atau SOP, tetapi instrumen/SOP belum terisi lengkap (hanya sebagian)",
+   "s3": "Melakukan kegiatan sebagai penyelia dengan menyiapkan/menggunakan instrumen penyelia atau SOP, dan instrumen/SOP terisi lengkap",
+   "bobot": 2
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 8,
+   "butir": 3,
+   "kompetensi": "Pendokumentasian: Uji mutu bahan makanan atau makanan secara fisik dan organoleptik",
+   "s0": "Tidak melakukan uji mutu bahan makanan atau makanan secara fisik dan organoleptik",
+   "s1": "Melakukan uji mutu: 1) tanpa menyiapkan/menggunakan instrumen atau SOP; 2) hanya salah satu uji mutu (fisik atau organoleptik) dengan benar",
+   "s2": "Melakukan uji mutu: 1) tanpa menyiapkan/menggunakan instrumen atau SOP; 2) uji mutu secara fisik dan organoleptik dengan benar",
+   "s3": "Melakukan uji mutu: 1) dengan menyiapkan/menggunakan instrumen atau SOP; 2) uji mutu secara fisik dan organoleptik dengan benar",
+   "bobot": 3
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 8,
+   "butir": 4,
+   "kompetensi": "Pendokumentasian: Kesimpulan hasil praktik pengamatan dan praktik tindakan",
+   "s0": "Tidak membuat kesimpulan hasil praktik pengamatan dan praktik tindakan",
+   "s1": "Membuat kesimpulan hanya 1 dari 3 tindakan: 1) Perencanaan kebutuhan bahan makanan; 2) Penyelia kegiatan; 3) Uji mutu secara fisik dan organoleptik",
+   "s2": "Membuat kesimpulan hanya 2 dari 3 tindakan: 1) Perencanaan kebutuhan bahan makanan; 2) Penyelia kegiatan; 3) Uji mutu secara fisik dan organoleptik",
+   "s3": "Membuat kesimpulan untuk 3 tindakan: 1) Perencanaan kebutuhan bahan makanan; 2) Penyelia kegiatan; 3) Uji mutu secara fisik dan organoleptik",
+   "bobot": 1
+  },
+  {
+   "paket": "STR-STANDAR",
+   "station": 8,
+   "butir": 5,
+   "kompetensi": "Mampu menunjukkan perilaku profesional",
+   "s0": "Tidak memiliki perilaku profesional sama sekali",
+   "s1": "Menunjukkan 1-2 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s2": "Menunjukkan 3-4 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "s3": "Menunjukkan 5-6 perilaku profesional, meliputi: 1) Mengucapkan salam pembuka kepada pasien; 2) Bersikap ramah; 3) Mempertahankan kontak mata; 4) Menggunakan bahasa sederhana dan santun; 5) Melakukan tindakan konseling dengan tanggung jawab; 6) Mengucapkan salam penutup",
+   "bobot": 2
+  }
+ ]
+}

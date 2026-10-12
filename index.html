@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Penguji OSCE Vokasi Gizi</title>
+  <meta name="description" content="Aplikasi input nilai penguji Uji Kompetensi metode OSCE Vokasi Gizi (D3 & Sarjana Terapan Gizi).">
+  <meta name="theme-color" content="#0B2A5B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Penguji OSCE">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section id="layar-cover" class="layar">
+  <div class="cover-atas"><span class="garis-kuning"></span><span id="cover-penyelenggara">AIPVOGI</span></div>
+  <div class="cover-tengah">
+    <img class="cover-logo" src="icons/logo-aipvogi.png" alt="Logo AIPVOGI" width="112" height="112">
+    <h1 class="cover-judul">Penguji <span>OSCE</span><br>Vokasi Gizi</h1>
+    <p class="cover-sub">Input nilai Uji Kompetensi metode Objective Structured Clinical Examination dan rekap hasil dalam format Excel.</p>
+    <div class="cover-pil">
+      <span class="pil">Diploma III Gizi · 8 station</span>
+      <span class="pil">Sarjana Terapan Gizi · 9 station</span>
+      <span class="pil">Bisa offline</span>
+    </div>
+    <div class="cover-aksi">
+      <button class="btn btn-kuning" id="btn-mulai">Masuk dengan PIN</button>
+      <button class="btn btn-hantu tersembunyi" id="btn-pasang">Pasang aplikasi di perangkat ini</button>
+    </div>
+    <p class="cover-catatan tersembunyi" id="petunjuk-ios">Di iPhone/iPad: ketuk tombol <b>Bagikan</b> lalu pilih <b>Tambahkan ke Layar Utama</b> agar data penilaian lebih aman.</p>
+  </div>
+  <div class="cover-bawah"><div class="kredit"><img src="icons/logo-aipvogi.png" alt="" width="28" height="28"><span>Aplikasi ini dikembangkan oleh <b>Bidang IT AIPVOGI</b><br>Asosiasi Institusi Pendidikan Tinggi Vokasi Gizi Indonesia</span></div>Mengacu pada Pedoman Penyelenggaraan Uji Kompetensi dengan Metode OSCE Vokasi Gizi (DPP PERSAGI · KIGI · AIPVOGI, 2023). <span id="versi-app"></span></div>
+</section>
+
+<!-- ================= LOGIN ================= -->
+<section id="layar-login" class="layar tersembunyi">
+  <div class="kartu-login">
+    <button class="tautan" id="btn-kembali-cover">← Kembali</button>
+    <h2>Masuk</h2>
+    <p>Masukkan PIN penguji atau admin yang diberikan panitia.</p>
+    <div id="login-galat" class="pesan-galat tersembunyi"></div>
+    <form id="form-login" autocomplete="off">
+      <input class="input-pin" id="input-pin" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="••••" aria-label="PIN" required>
+      <button class="btn btn-utama btn-penuh" id="btn-login" type="submit">Masuk</button>
+    </form>
+    <p class="catatan-kecil" style="margin-top:14px">Login pertama membutuhkan internet. Setelah itu daftar peserta & rubrik tersimpan di perangkat sehingga penilaian tetap bisa dilakukan saat offline.</p>
+    <div class="kredit-kecil"><img src="icons/logo-aipvogi.png" alt="" width="22" height="22">Dikembangkan oleh Bidang IT AIPVOGI</div>
+  </div>
+</section>
+
+<!-- ================= BERANDA PENGUJI ================= -->
+<section id="layar-penguji" class="layar tersembunyi">
+  <header class="topbar">
+    <div class="topbar-baris">
+      <div class="lencana-station"><small>STATION</small><b id="pg-no-station">-</b></div>
+      <div class="topbar-judul">
+        <div class="kecil" id="pg-periode">-</div>
+        <div class="besar" id="pg-penguji">-</div>
+      </div>
+      <button class="btn-ikon" id="btn-menu-penguji" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+      </button>
+    </div>
+  </header>
+  <div class="bilah-sinkron"><div class="isi" id="bilah-sinkron"></div></div>
+  <main class="konten">
+    <div class="info-station">
+      <div class="judul" id="pg-judul-station">-</div>
+      <div class="meta" id="pg-meta-station">-</div>
+      <div class="ringkas-angka">
+        <div class="angka"><b id="pg-jml-dinilai">0</b><span>sudah dinilai</span></div>
+        <div class="angka"><b id="pg-jml-sisa">0</b><span>belum dinilai</span></div>
+        <div class="angka"><b id="pg-jml-peserta">0</b><span>total peserta</span></div>
+      </div>
+    </div>
+    <input class="cari" id="cari-peserta" type="search" placeholder="Cari nama / NIM / nomor urut…">
+    <div class="daftar-peserta" id="daftar-peserta"></div>
+  </main>
+</section>
+
+<!-- ================= FORM NILAI ================= -->
+<section id="layar-nilai" class="layar tersembunyi">
+  <header class="topbar">
+    <div class="topbar-baris">
+      <button class="btn-ikon" id="btn-kembali-daftar" aria-label="Kembali">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="topbar-judul">
+        <div class="kecil" id="nl-station">-</div>
+        <div class="besar">Lembar Penilaian</div>
+      </div>
+    </div>
+  </header>
+  <main class="konten">
+    <div class="kepala-peserta">
+      <div class="urut" id="nl-urut">-</div>
+      <div><div class="nama" id="nl-nama">-</div><div class="nim" id="nl-nim">-</div></div>
+    </div>
+    <div id="nl-kunci" class="kaku tersembunyi"></div>
+    <div id="nl-butir"></div>
+    <div class="kartu-gr">
+      <h3>Global Performance</h3>
+      <p>Kesan umum Anda terhadap penampilan peserta secara keseluruhan.</p>
+      <div class="pilihan-gr" id="nl-gr">
+        <button class="gr-btn" data-gr="1"><b>1</b>Tidak Lulus</button>
+        <button class="gr-btn" data-gr="2"><b>2</b>Borderline</button>
+        <button class="gr-btn" data-gr="3"><b>3</b>Lulus</button>
+        <button class="gr-btn" data-gr="4"><b>4</b>Superior</button>
+      </div>
+    </div>
+    <div class="kartu-catatan">
+      <h3>Catatan (opsional)</h3>
+      <textarea id="nl-catatan" placeholder="Catatan penguji…"></textarea>
+    </div>
+  </main>
+  <footer class="kaki-tetap">
+    <div class="isi">
+      <div class="total-langsung"><div class="kecil">Actual Mark</div><div class="besar" id="nl-total">0 / 0</div></div>
+      <button class="btn btn-utama" id="btn-periksa">Periksa &amp; Simpan</button>
+    </div>
+  </footer>
+</section>
+
+<!-- ================= ADMIN ================= -->
+<section id="layar-admin" class="layar tersembunyi">
+  <header class="topbar">
+    <div class="topbar-baris">
+      <div class="lencana-station"><small>MODE</small><b style="font-size:14px">ADMIN</b></div>
+      <div class="topbar-judul">
+        <div class="kecil">Rekap Penilaian OSCE</div>
+        <div class="besar" id="ad-nama">-</div>
+      </div>
+      <button class="btn btn-hantu btn-kecil" id="btn-keluar-admin">Keluar</button>
+    </div>
+  </header>
+  <main class="konten">
+    <div class="panel">
+      <h3>Periode ujian</h3>
+      <div class="baris-form">
+        <select id="ad-periode"></select>
+        <button class="btn btn-utama" id="btn-muat-admin">Muat data</button>
+      </div>
+      <div class="catatan-kecil" id="ad-status" style="margin-top:8px"></div>
+    </div>
+    <div id="ad-isi" class="tersembunyi">
+      <div class="panel">
+        <div class="baris-form" style="justify-content:space-between">
+          <div>
+            <div style="font-weight:700" id="ad-judul-periode">-</div>
+            <div class="catatan-kecil" id="ad-progres-teks">-</div>
+          </div>
+          <div class="baris-form">
+            <button class="btn btn-kuning" id="btn-unduh-excel">Unduh Excel Rekap</button>
+            <button class="btn btn-garis" id="btn-impor">Impor Cadangan</button>
+            <input type="file" id="file-impor" accept=".json,application/json" class="tersembunyi">
+          </div>
+        </div>
+        <div class="bilah-progres"><div id="ad-bar" style="width:0%"></div></div>
+      </div>
+      <div class="tab-bar">
+        <button class="tab-btn aktif" data-tab="progres">Progres per station</button>
+        <button class="tab-btn" data-tab="matriks">Matriks peserta</button>
+        <button class="tab-btn" data-tab="nbl">Batas lulus (NBL)</button>
+        <button class="tab-btn" data-tab="hasil">Hasil kelulusan</button>
+      </div>
+      <div class="panel" id="ad-tab"></div>
+    </div>
+    <div class="kredit-kecil" style="justify-content:center;margin-top:20px"><img src="icons/logo-aipvogi.png" alt="" width="22" height="22">Aplikasi ini dikembangkan oleh Bidang IT AIPVOGI</div>
+  </main>
+</section>
+
+<div id="dialog-wadah"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="banner-update" class="tersembunyi">Versi baru aplikasi tersedia. <button class="btn btn-utama btn-kecil" id="btn-update">Muat ulang</button></div>
+
+<script src="js/config.js"></script>
+<script src="js/db.js"></script>
+<script src="js/rekap.js"></script>
+<script src="vendor/xlsx.full.min.js" defer></script>
+<script src="js/app.js"></script>
+</body>
+</html>
