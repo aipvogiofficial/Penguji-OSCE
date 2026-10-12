@@ -14,6 +14,7 @@ http.createServer((req,res)=>{
       res.writeHead(200,{'Content-Type':'application/json'}); res.end(out.isi);
     }); return;
   }
+  if(req.url==='/__tambah'){ let b=''; req.on('data',c=>b+=c); req.on('end',()=>{ const o=JSON.parse(b); gas._ss.getSheetByName(o.sheet).appendRow(o.row); res.end('ok'); }); return; }
   if(req.url==='/__dump'){ res.writeHead(200,{'Content-Type':'application/json'}); return res.end(JSON.stringify(gas._ss.sheets.map(s=>({n:s.name,d:s.data})))); }
   let p = decodeURIComponent(req.url.split('?')[0]); if(p.endsWith('/')) p+='index.html';
   const f=path.join(ROOT,p);

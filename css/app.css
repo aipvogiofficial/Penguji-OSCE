@@ -172,13 +172,13 @@ input, select, textarea { font: inherit; color: inherit; }
   border: 2px solid var(--garis); background: #fff; border-radius: 12px; min-height: 56px; font-size: 22px; font-weight: 800; color: var(--ink-2);
 }
 .skor-btn.aktif { background: var(--navy); border-color: var(--navy); color: #fff; }
-.deskripsi { margin-top: 10px; background: var(--latar); border-radius: 10px; padding: 10px 12px; font-size: 14px; color: var(--ink-2); }
+.deskripsi { white-space: pre-line; margin-top: 10px; background: var(--latar); border-radius: 10px; padding: 10px 12px; font-size: 14px; color: var(--ink-2); }
 .deskripsi b { color: var(--ink); }
 .deskripsi.kosong-pilih { font-style: italic; }
 .semua-kriteria { margin-top: 8px; }
 .semua-kriteria summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: 14px; padding: 4px 0; }
 .semua-kriteria ol { margin: 6px 0 0; padding-left: 0; list-style: none; display: grid; gap: 6px; }
-.semua-kriteria li { font-size: 13.5px; background: #fff; border: 1px solid var(--garis); border-radius: 8px; padding: 8px 10px; color: var(--ink-2); }
+.semua-kriteria li { white-space: pre-line; font-size: 13.5px; background: #fff; border: 1px solid var(--garis); border-radius: 8px; padding: 8px 10px; color: var(--ink-2); }
 .semua-kriteria li b { color: var(--navy); }
 
 .kartu-gr { background: var(--putih); border-radius: var(--radius); box-shadow: var(--bayang); padding: 14px 16px; margin-bottom: 12px; }
@@ -268,3 +268,32 @@ input, select, textarea { font: inherit; color: inherit; }
 .kredit img { border-radius: 50%; background: #fff; flex: none; }
 .kredit-kecil { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--garis); font-size: 12.5px; color: var(--ink-2); }
 .kredit-kecil img { border-radius: 50%; flex: none; }
+
+/* ---------- Impor rubrik ---------- */
+.grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.grid-form label.lebar { grid-column: 1 / -1; }
+.grid-form input, .grid-form select { padding: 11px 12px; border: 1px solid var(--garis); border-radius: 10px; background: #fff; font-size: 15px; color: var(--ink); font-weight: 400; min-height: 46px; }
+@media (max-width: 560px) { .grid-form { grid-template-columns: 1fr; } }
+.cek-kecil { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-2); }
+.cek-kecil input { width: 18px; height: 18px; }
+.kartu-imp { background: var(--putih); border-radius: var(--radius); box-shadow: var(--bayang); padding: 14px 16px; margin-bottom: 12px; border-left: 4px solid var(--hijau); }
+.kartu-imp.galat { border-left-color: var(--merah); }
+.kartu-imp.standar { border-left-color: var(--garis); }
+.kartu-imp.istirahat { border-left-color: var(--garis); opacity: .7; }
+.imp-kepala { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.imp-kepala .no { background: var(--navy); color: #fff; font-weight: 800; border-radius: 8px; padding: 2px 9px; }
+.imp-kepala .judul { font-weight: 700; flex: 1; min-width: 160px; }
+.imp-kepala select, .imp-kasus input { padding: 8px 10px; border: 1px solid var(--garis); border-radius: 8px; background: #fff; font-size: 14px; }
+.imp-kasus { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--ink-2); margin-bottom: 8px; }
+.imp-kasus input { flex: 1; }
+.imp-file { font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+.imp-galat { background: var(--merah-soft); color: var(--merah); border-radius: 8px; padding: 8px 10px; font-size: 13px; margin: 6px 0; }
+.imp-butir { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.imp-butir td { border-top: 1px solid var(--garis); padding: 8px 4px; vertical-align: top; }
+.imp-butir tr.mati td { opacity: .45; }
+.imp-butir select { padding: 6px; border-radius: 8px; border: 1px solid var(--garis); }
+.imp-butir select.kosong { border-color: var(--merah); background: var(--merah-soft); }
+.imp-butir details summary { cursor: pointer; color: var(--navy); font-size: 12.5px; font-weight: 600; margin-top: 4px; }
+.imp-butir details div { white-space: pre-line; font-size: 12.5px; color: var(--ink-2); background: var(--latar); border-radius: 6px; padding: 6px 8px; margin-top: 4px; }
+.tag-alt { background: #FFF6C2; color: #7A6000; font-size: 11px; font-weight: 700; border-radius: 6px; padding: 1px 6px; margin-left: 4px; }

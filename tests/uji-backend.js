@@ -65,3 +65,14 @@ const XLSX=require('../vendor/xlsx.full.min.js');
 const wb=Rekap.buatWorkbook(XLSX,A,H,{minPeserta:10}); console.log('sheets:',wb.SheetNames.join(' | '));
 require('fs').writeFileSync(process.argv[2]||'/tmp/rekap-uji.xlsx', XLSX.write(wb,{type:'buffer',bookType:'xlsx'}));
 console.log('SEMUA UJI BACKEND LULUS');
+// --- impor paket
+const st=[1,2,3,4,5,6,7,8].map(n=>({no:n,judul:'J'+n,kasus:'K'+n,istirahat:n===4||n===8,waktu:10}));
+let ip=g.post({aksi:'imporPaket',pin:'3101',kode:'X',program:'D3',station:st,rubrik:[]}); assert.strictEqual(ip.ok,false);
+ip=g.post({aksi:'imporPaket',pin:'909090',kode:'d3-x',program:'D3',basis:'D3-STANDAR',salinStation:[1,3,5,6,7],station:st,
+  rubrik:[{station:2,butir:1,kompetensi:'A',s0:'a',s1:'b',s2:'c',s3:'d',bobot:2}]});
+assert(ip.ok, ip.pesan); assert.strictEqual(ip.kode,'D3-X'); assert.strictEqual(ip.jumlahButir,1+4+3+3+3+4);
+assert.strictEqual(g.post({aksi:'imporPaket',pin:'909090',kode:'D3-X',program:'D3',station:st,rubrik:[]}).ok,false,'kode ganda ditolak');
+assert.strictEqual(g.post({aksi:'imporPaket',pin:'909090',kode:'D3-Y',program:'D3',station:st,salinStation:[],rubrik:[{station:2,butir:1,kompetensi:'A',s0:'a',s1:'b',s2:'c',s3:'d',bobot:2}]}).ok,false,'station kosong ditolak');
+assert.strictEqual(g.post({aksi:'imporPaket',pin:'909090',kode:'D3-Z',program:'D3',station:st,salinStation:[1,3,5,6,7],basis:'D3-STANDAR',rubrik:[{station:2,butir:1,kompetensi:'A',s0:'a',s1:'b',s2:'c',s3:'d',bobot:5}]}).ok,false,'bobot salah ditolak');
+assert.strictEqual(g.baca_('PAKET').filter(p=>/^D3-[YZ]$/.test(p['Kode Paket'])).length,0,'tidak ada paket setengah jadi');
+console.log('UJI IMPOR PAKET LULUS');

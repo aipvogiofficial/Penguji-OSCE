@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><link rel="stylesheet" href="gaya.css"><title>Isi</title></head>
+<body>
+
+<h1 class="bab"><small>BAB I</small>Pendahuluan</h1>
+
+<h2>1.1 Latar Belakang</h2>
+<p>Uji Kompetensi mahasiswa Program Pendidikan Vokasi Gizi (Diploma III Gizi dan Sarjana Terapan Gizi) dengan metode <i>Objective Structured Clinical Examination</i> (OSCE) menilai kemampuan peserta sampai tahap <i>show how</i>. Peserta berpindah dari satu station ke station berikutnya, dan pada setiap station penguji menilai kinerja peserta menggunakan rubrik terstandar, lalu memberikan penilaian kesan umum (<i>global performance</i>).</p>
+<p>Penilaian secara manual di atas kertas membutuhkan waktu rekapitulasi yang panjang, rentan salah hitung, dan menyulitkan penghitungan Nilai Batas Lulus dengan <i>Borderline Regression Method</i> sebagaimana diamanatkan pedoman. Karena itu Bidang IT AIPVOGI mengembangkan <b>Aplikasi Penguji OSCE Vokasi Gizi</b>: aplikasi web progresif (PWA) yang dipakai penguji untuk menginput nilai langsung di station, menyimpan data ke Google Sheets, dan menghasilkan rekap kelulusan dalam format Excel.</p>
+
+<h2>1.2 Tujuan Buku Manual</h2>
+<ul>
+<li>Menjadi panduan pemasangan dan konfigurasi aplikasi bagi admin/pengelola TI institusi.</li>
+<li>Menjadi panduan pengelolaan data ujian (periode, peserta, penguji, rubrik) di Google Sheets.</li>
+<li>Menjadi panduan penggunaan aplikasi bagi penguji dan admin pada hari pelaksanaan ujian.</li>
+<li>Menjelaskan cara aplikasi menghitung nilai, batas lulus, dan status kelulusan peserta.</li>
+</ul>
+
+<h2>1.3 Acuan</h2>
+<p>Aplikasi dan buku manual ini mengacu pada <i>Pedoman Penyelenggaraan Uji Kompetensi dengan Metode OSCE Vokasi Gizi</i> yang disusun bersama oleh DPP PERSAGI, Kolegium Ilmu Gizi Indonesia (KIGI), dan AIPVOGI, beserta Surat Edaran Bersama tanggal 7 Agustus 2023 tentang himbauan penyelenggaraan Uji Kompetensi metode OSCE secara mandiri institusional.</p>
+
+<h2>1.4 Daftar Istilah</h2>
+<table>
+<thead><tr><th style="width:32%">Istilah</th><th>Pengertian</th></tr></thead>
+<tbody>
+<tr><td>OSCE</td><td>Metode uji kompetensi klinik secara objektif dan terstruktur dalam bentuk rotasi station dengan alokasi waktu tertentu.</td></tr>
+<tr><td>Station</td><td>Pos ujian berisi satu kasus dan tugas yang dinilai satu penguji. D3 Gizi: 8 station (6 aktif, 2 istirahat); Sarjana Terapan Gizi: 9 station (7 aktif, 2 istirahat).</td></tr>
+<tr><td>Rubrik</td><td>Lembar penilaian berisi butir kompetensi dengan kriteria skor 0, 1, 2, 3 dan bobot 1 (mudah), 2 (sedang), 3 (sulit).</td></tr>
+<tr><td>Actual Mark (AM)</td><td>Jumlah skor butir × bobot pada satu station.</td></tr>
+<tr><td>Global Rating (GR)</td><td>Kesan umum penguji: 1 Tidak Lulus, 2 Borderline, 3 Lulus, 4 Superior.</td></tr>
+<tr><td>Nilai Batas Lulus (NBL)</td><td>Skor minimal untuk lulus suatu station, dihitung dengan Borderline Regression Method.</td></tr>
+<tr><td>Paket</td><td>Kumpulan station dan rubrik yang dipakai pada suatu periode ujian (mis. <code>D3-STANDAR</code>).</td></tr>
+<tr><td>Periode</td><td>Satu penyelenggaraan ujian untuk satu program (D3 atau Sarjana Terapan).</td></tr>
+<tr><td>PWA</td><td><i>Progressive Web App</i>: aplikasi web yang dapat dipasang di layar utama perangkat dan tetap berjalan tanpa internet.</td></tr>
+<tr><td>Sinkronisasi</td><td>Proses pengiriman nilai yang tersimpan di perangkat ke database Google Sheets.</td></tr>
+</tbody></table>
+
+<h1 class="bab"><small>BAB II</small>Gambaran Umum Aplikasi</h1>
+
+<h2>2.1 Fitur Utama</h2>
+<ul>
+<li><b>Input nilai di station</b>: penguji hanya melihat station dan rubriknya sendiri; skor × bobot dan total dihitung otomatis.</li>
+<li><b>Layar periksa kembali</b> sebelum disimpan; setelah disimpan nilai <b>dikunci</b> dan hanya dapat dikoreksi admin.</li>
+<li><b>Bisa offline</b>: nilai disimpan di perangkat dan terkirim otomatis begitu ada internet, tanpa nilai ganda.</li>
+<li><b>Pengaman data berlapis</b>: penyimpanan permanen, larangan keluar selama ada nilai belum terkirim, dan file cadangan.</li>
+<li><b>Rekap otomatis</b>: progres per station, matriks peserta, Nilai Batas Lulus (Borderline Regression), dan status kelulusan.</li>
+<li><b>Unduh Excel</b>: rekap lengkap untuk arsip, yudisium, dan bukti akreditasi.</li>
+<li><b>Rubrik fleksibel</b>: rubrik dan kasus dapat diganti per periode, termasuk <b>impor otomatis dari file template soal (.docx)</b> tanpa mengetik ulang.</li>
+<li><b>Waktu setempat</b>: waktu penilaian otomatis tercatat dalam WIB, WITA, atau WIT sesuai lokasi perangkat.</li>
+</ul>
+
+<h2>2.2 Arsitektur Sistem</h2>
+<p>Aplikasi terdiri atas tiga komponen yang semuanya dapat digunakan tanpa biaya:</p>
+<table>
+<thead><tr><th style="width:28%">Komponen</th><th style="width:30%">Layanan</th><th>Fungsi</th></tr></thead>
+<tbody>
+<tr><td>Aplikasi (tampilan)</td><td>GitHub Pages<br><span class="kode">aipvogiofficial.github.io/Penguji-OSCE</span></td><td>Halaman yang dibuka penguji dan admin; dapat dipasang sebagai aplikasi (PWA).</td></tr>
+<tr><td>Penghubung (API)</td><td>Google Apps Script (Web App)</td><td>Memeriksa PIN, mengirim data peserta/rubrik, dan menyimpan nilai ke Sheet.</td></tr>
+<tr><td>Database</td><td>Google Sheets</td><td>Menyimpan periode, paket, station, rubrik, peserta, penguji, nilai, dan log.</td></tr>
+</tbody></table>
+<div class="kotak info"><b class="judul">Keamanan data</b><p>Data peserta dan nilai hanya tersimpan di Google Sheets milik akun AIPVOGI, tidak di GitHub. Setiap pengiriman nilai diperiksa PIN dan kewenangannya oleh Apps Script. Jangan membagikan file Google Sheets secara publik.</p></div>
+
+<h2>2.3 Peran Pengguna</h2>
+<table>
+<thead><tr><th style="width:22%">Peran</th><th>Kewenangan</th></tr></thead>
+<tbody>
+<tr><td><b>Admin</b></td><td>Mengisi data di Google Sheets, memantau progres seluruh station, melihat NBL dan hasil kelulusan, mengunduh Excel rekap, mengimpor file cadangan, dan mengoreksi nilai.</td></tr>
+<tr><td><b>Penguji</b></td><td>Login dengan PIN, melihat daftar peserta dan rubrik station yang ditugaskan, menginput dan mengunci nilai, mengunduh file cadangan.</td></tr>
+</tbody></table>
+
+<h2>2.4 Struktur Ujian</h2>
+<table>
+<thead><tr><th></th><th>Diploma III Gizi</th><th>Sarjana Terapan Gizi</th></tr></thead>
+<tbody>
+<tr><td>Jumlah station</td><td>8 (6 aktif + 2 istirahat)</td><td>9 (7 aktif + 2 istirahat)</td></tr>
+<tr><td>Station istirahat</td><td>Station 4 dan 8</td><td>Station 4 dan 9</td></tr>
+<tr><td>Waktu per station</td><td>10 menit (1 baca, 8 kerja, 1 pindah)</td><td>12 menit (1 baca, 10 kerja, 1 pindah)</td></tr>
+<tr><td>Kode paket standar</td><td><code>D3-STANDAR</code></td><td><code>STR-STANDAR</code></td></tr>
+<tr><td>Syarat lulus</td><td colspan="2">Lulus pada <b>seluruh</b> station aktif</td></tr>
+</tbody></table>
+
+<h2>2.5 Rubrik Standar</h2>
+<p>Saat pertama kali disiapkan, database otomatis berisi rubrik standar sesuai Lampiran III pedoman. Ringkasan butir dan bobot setiap station:</p>
+<h3>Diploma III Gizi (paket D3-STANDAR)</h3>
+{{TABEL_RUBRIK_D3}}
+<h3>Sarjana Terapan Gizi (paket STR-STANDAR)</h3>
+{{TABEL_RUBRIK_STR}}
+<div class="kotak awas"><b class="judul">Catatan penyesuaian rubrik standar</b>
+<ul style="margin-bottom:0">
+<li>Station Penyelenggaraan Makanan Sarjana Terapan mengikuti contoh soal pedoman (kasus katering).</li>
+<li>Butir antropometri memakai versi utama (BB, TB, dan data objektif), bukan versi alternatif "hanya TB".</li>
+<li>Bobot butir penilaian sisa makanan metode Comstock (D3 station 7) tidak tercantum di pedoman dan diisi 3. Sesuaikan di tab RUBRIK bila diperlukan.</li>
+</ul></div>
+
+<h1 class="bab"><small>BAB III</small>Instalasi dan Konfigurasi</h1>
+<p>Bab ini ditujukan bagi admin atau pengelola TI. Instalasi cukup dilakukan <b>satu kali</b>. Seluruh langkah menggunakan akun Google dan akun GitHub resmi AIPVOGI.</p>
+
+<h2>3.1 Menyiapkan Google Sheets</h2>
+<ol class="langkah">
+<li>Login Google dengan akun <b>aipvogi.official@gmail.com</b>, lalu buat Google Sheet baru, misalnya bernama <b>Database Penguji OSCE</b>.</li>
+<li>Buka menu <b>Ekstensi → Apps Script</b>. Hapus isi file <code>Code.gs</code>, lalu tempel seluruh isi file <code>apps-script/Code.gs</code> dari paket aplikasi. Klik ikon simpan.</li>
+<li>Buka <b>⚙ Setelan Project</b>, ubah <b>Zona waktu</b> menjadi zona kantor pusat (misalnya GMT+07:00 Jakarta atau GMT+08:00 Makassar).</li>
+<li>Kembali ke editor, pilih fungsi <b><code>setup</code></b> pada dropdown, lalu klik <b>▶ Jalankan</b>. Pada permintaan izin pilih <i>Tinjau izin → pilih akun → Lanjutan → Buka proyek → Izinkan</i>.</li>
+<li>Setelah eksekusi selesai, Sheet otomatis berisi tab <b>PERIODE, PAKET, STATION, RUBRIK, PESERTA, PENGUJI, NILAI, LOG</b> lengkap dengan rubrik standar, serta satu akun admin dengan <b>PIN 909090</b>.</li>
+</ol>
+<div class="kotak bahaya"><b class="judul">Penting</b><p>Segera ganti PIN admin 909090 di tab PENGUJI dengan angka lain yang hanya diketahui admin.</p></div>
+
+<h2>3.2 Memasang Web App (API)</h2>
+<ol class="langkah">
+<li>Di editor Apps Script klik <b>Terapkan → Deployment baru</b>, pilih jenis <b>Aplikasi web</b>.</li>
+<li>Isi <i>Jalankan sebagai</i>: <b>Saya</b>; <i>Yang memiliki akses</i>: <b>Siapa saja</b>. Klik <b>Terapkan</b>.</li>
+<li>Salin <b>URL Web App</b> yang berakhiran <code>/exec</code>.</li>
+<li>Buka URL tersebut di browser. Bila muncul teks <code>{"ok":true,"app":"Penguji OSCE Vokasi Gizi",...}</code>, API sudah aktif.</li>
+</ol>
+<div class="kotak info"><b class="judul">Bila Code.gs diperbarui</b><p>Gunakan <b>Terapkan → Kelola deployment → Edit (ikon pensil) → Versi: Versi baru → Terapkan</b>. Dengan cara ini URL Web App tidak berubah.</p></div>
+
+<h2>3.3 Mengatur Alamat API di Aplikasi</h2>
+<p>Buka file <code>js/config.js</code> lalu isi <code>API_URL</code> dengan URL Web App. Pengaturan lain dalam file yang sama:</p>
+<table>
+<thead><tr><th style="width:30%">Pengaturan</th><th style="width:18%">Bawaan</th><th>Keterangan</th></tr></thead>
+<tbody>
+<tr><td><code>API_URL</code></td><td>-</td><td>URL Web App Apps Script (wajib).</td></tr>
+<tr><td><code>INTERVAL_SINKRON</code></td><td>30000</td><td>Jeda pengiriman otomatis nilai (milidetik).</td></tr>
+<tr><td><code>MIN_PESERTA_BRM</code></td><td>10</td><td>Jumlah minimal peserta dinilai per station agar Borderline Regression dipakai.</td></tr>
+</tbody></table>
+
+<h2>3.4 Mengunggah Aplikasi ke GitHub Pages</h2>
+<ol class="langkah">
+<li>Buka repositori <b>github.com/aipvogiofficial/Penguji-OSCE</b>, klik <b>Add file → Upload files</b>, unggah seluruh isi folder aplikasi (termasuk subfolder <code>css, js, icons, vendor</code>), lalu <b>Commit changes</b>.</li>
+<li>Buka <b>Settings → Pages</b>. Pada <i>Source</i> pilih <b>Deploy from a branch</b>, branch <b>main</b>, folder <b>/(root)</b>, lalu <b>Save</b>.</li>
+<li>Setelah 1–2 menit aplikasi dapat dibuka di <b>https://aipvogiofficial.github.io/Penguji-OSCE/</b>.</li>
+</ol>
+
+<h2>3.5 Memperbarui Aplikasi</h2>
+<p>Bila file <code>Code.gs</code> berubah, tempel ulang isinya di editor Apps Script lalu terapkan sebagai versi baru (Subbab 3.2) agar URL tetap sama. Setiap kali berkas aplikasi diubah, naikkan nomor versi pada baris <code>var VERSI = 'penguji-osce-v1.2.0'</code> di file <code>sw.js</code> (misalnya menjadi <code>v1.2.1</code>). Perangkat penguji akan menampilkan pemberitahuan <i>Versi baru aplikasi tersedia → Muat ulang</i>.</p>
+
+<h1 class="bab"><small>BAB IV</small>Pengelolaan Data di Google Sheets</h1>
+<p>Seluruh data ujian dikelola admin langsung di Google Sheets. Baris pertama setiap tab adalah judul kolom dan <b>tidak boleh diubah</b>. Data diisi mulai baris kedua; data dari Excel dapat disalin-tempel.</p>
+
+<h2>4.1 Ringkasan Tab</h2>
+<table>
+<thead><tr><th style="width:18%">Tab</th><th>Isi</th><th style="width:22%">Diisi oleh</th></tr></thead>
+<tbody>
+<tr><td>PERIODE</td><td>Daftar periode ujian, program, paket rubrik, status.</td><td>Admin</td></tr>
+<tr><td>PAKET</td><td>Daftar paket rubrik dan status terkunci.</td><td>Otomatis / admin</td></tr>
+<tr><td>STATION</td><td>Daftar station per paket (judul, kasus, istirahat, waktu).</td><td>Otomatis / admin</td></tr>
+<tr><td>RUBRIK</td><td>Butir kompetensi, kriteria skor 0–3, dan bobot per station.</td><td>Otomatis / admin</td></tr>
+<tr><td>PESERTA</td><td>Daftar mahasiswa per periode dan nomor urut rotasi.</td><td>Admin</td></tr>
+<tr><td>PENGUJI</td><td>PIN, nama, station tugas, dan peran (penguji/admin).</td><td>Admin</td></tr>
+<tr><td>NILAI</td><td>Nilai yang dikirim penguji.</td><td>Otomatis (aplikasi)</td></tr>
+<tr><td>LOG</td><td>Catatan aktivitas login dan penyimpanan.</td><td>Otomatis</td></tr>
+</tbody></table>
+
+<h2>4.2 Tab PERIODE</h2>
+<table>
+<thead><tr><th>Kode Periode</th><th>Nama Periode</th><th>Program</th><th>Kode Paket</th><th>Tanggal</th><th>Status</th><th>Batas Cad. (%)</th></tr></thead>
+<tbody>
+<tr><td>D3-2026-01</td><td>OSCE D3 Gizi Periode I 2026</td><td>D3</td><td>D3-STANDAR</td><td>2026-11-20</td><td>AKTIF</td><td>60</td></tr>
+<tr><td>STR-2026-01</td><td>OSCE Sarjana Terapan Gizi Periode I 2026</td><td>STR</td><td>STR-STANDAR</td><td>2026-11-21</td><td>AKTIF</td><td>60</td></tr>
+</tbody></table>
+<ul>
+<li><b>Kode Periode</b>: kode singkat tanpa spasi dan unik; harus ditulis sama persis di tab PESERTA dan PENGUJI.</li>
+<li><b>Program</b>: <code>D3</code> atau <code>STR</code>.</li>
+<li><b>Kode Paket</b>: paket rubrik yang dipakai (<code>D3-STANDAR</code>, <code>STR-STANDAR</code>, atau paket buatan sendiri).</li>
+<li><b>Status</b>: <code>AKTIF</code> agar penguji dapat login dan mengirim nilai; ubah menjadi <code>SELESAI</code> setelah ujian berakhir.</li>
+<li><b>Batas Cadangan (%)</b>: persentase skor maksimal yang dipakai sebagai batas lulus bila regresi tidak memadai (lihat BAB VII).</li>
+</ul>
+
+<h2>4.3 Tab PESERTA</h2>
+<table>
+<thead><tr><th>Kode Periode</th><th>No Urut</th><th>NIM</th><th>Nama</th><th>Sesi</th><th>Grup</th></tr></thead>
+<tbody>
+<tr><td>D3-2026-01</td><td>1</td><td>PO7124123001</td><td>Andi Rahmawati</td><td>1</td><td>A</td></tr>
+<tr><td>D3-2026-01</td><td>2</td><td>PO7124123002</td><td>Budi Santoso</td><td>1</td><td>A</td></tr>
+</tbody></table>
+<p><b>No Urut</b> menentukan urutan peserta di layar penguji (urutan rotasi). <b>NIM</b> harus unik dalam satu periode. Kolom Sesi dan Grup bersifat opsional.</p>
+
+<h2>4.4 Tab PENGUJI</h2>
+<table>
+<thead><tr><th>PIN</th><th>Nama</th><th>Asal Institusi</th><th>Jenis</th><th>Peran</th><th>Kode Periode</th><th>No St.</th><th>Aktif</th></tr></thead>
+<tbody>
+<tr><td>583921</td><td>Dr. Siti Aminah, M.Gz</td><td>Poltekkes A</td><td>Internal</td><td>PENGUJI</td><td>D3-2026-01</td><td>1</td><td>YA</td></tr>
+<tr><td>274615</td><td>Hasan, S.Gz, M.Kes</td><td>Poltekkes B</td><td>Eksternal</td><td>PENGUJI</td><td>D3-2026-01</td><td>2</td><td>YA</td></tr>
+<tr><td>(rahasia)</td><td>Administrator</td><td></td><td></td><td>ADMIN</td><td></td><td></td><td>YA</td></tr>
+</tbody></table>
+<ul>
+<li>Satu baris untuk satu penguji pada satu station. <b>PIN</b> harus unik, sebaiknya 6 digit acak dan tidak diawali angka 0.</li>
+<li><b>No Station</b>: D3 diisi 1, 2, 3, 5, 6, 7; Sarjana Terapan diisi 1, 2, 3, 5, 6, 7, 8. Station istirahat tidak diberi penguji.</li>
+<li><b>Jenis</b>: Internal, Eksternal, atau Siaga. Sesuai pedoman, setiap sesi memiliki 2 penguji eksternal dan penguji siaga 25%.</li>
+<li><b>Penguji siaga</b> dibuat dengan baris sendiri (PIN berbeda) pada station yang dicadangkan; isi <b>Aktif</b> = <code>TIDAK</code> dan ubah ke <code>YA</code> saat dibutuhkan.</li>
+<li><b>Peran ADMIN</b> tidak memerlukan Kode Periode dan No Station.</li>
+</ul>
+
+<h2>4.5 Tab NILAI</h2>
+<p>Tab ini diisi otomatis oleh aplikasi. Setiap baris adalah nilai satu peserta di satu station: skor butir (B1–B8), Global Rating, catatan, nama penguji, <b>Waktu Penilaian</b> (jam setempat penguji, misalnya <code>2026-11-20 09:15:02 WIT</code>), dan <b>Waktu Diterima</b> (jam server). Kolom <b>Kunci</b> (periode|station|NIM) mencegah nilai ganda.</p>
+<div class="kotak awas"><b class="judul">Koreksi nilai</b><p>Bila nilai perlu dikoreksi (misalnya salah pilih skor), admin mengubah langsung kolom B1–B8 atau Global Rating pada baris yang bersangkutan dan menuliskan alasan pada kolom <b>Keterangan</b>. Rekap selalu dihitung ulang dari skor butir sehingga total tidak perlu diperbaiki manual.</p></div>
+
+<h2>4.6 Mengubah Rubrik</h2>
+<p>Rubrik disimpan di Google Sheets dalam bentuk <b>paket</b>, sehingga perubahan tidak memerlukan perubahan aplikasi. Paket otomatis ditandai <code>Terkunci = YA</code> begitu ada nilai yang masuk. Ada tiga cara menyiapkan rubrik baru:</p>
+<h3>a. Cara paling praktis: impor dari template soal (.docx)</h3>
+<p>Rubrik tidak perlu diketik ulang. Admin cukup mengunggah file soal yang disusun dosen sesuai template Lampiran III pedoman; aplikasi membaca <b>nomor station</b> dan <b>tabel Rubrik Penilaian</b> (kompetensi, kriteria skor 0–3, bobot). File dibaca di perangkat admin dan <b>tidak diunggah ke mana pun</b>; skenario klinik serta instruksi penguji dan pemeran standar tidak dibaca.</p>
+<ol class="langkah">
+<li>Login sebagai admin, lalu pada panel <b>Paket rubrik</b> klik <span class="tombol">Impor Rubrik dari Template Soal (.docx)</span>.</li>
+<li>Pilih <b>Program</b> (D3 atau Sarjana Terapan), isi <b>Kode paket baru</b> (misalnya <code>D3-2027-A</code>) dan keterangan.</li>
+<li>Klik <span class="tombol">Pilih file soal</span> dan pilih semua file soal sekaligus (satu file per station).</li>
+<li>Periksa pratinjau per station. Nomor station dibaca otomatis dari judul "Stasion – n", dari baris <i>Nomor station</i> (angka lain dicoret), atau dari nama file (misalnya <code>St5_Stunting.docx</code>); bila tidak terbaca, pilih manual.</li>
+<li>Lengkapi yang ditandai merah, misalnya bobot yang kosong. Baris alternatif berwarna kuning (mis. "atau hanya 1 pengukuran TB") otomatis tidak dipakai; centang bila ingin dipakai. Ubah nama kasus bila perlu.</li>
+<li>Station yang tidak diunggah filenya memakai rubrik paket standar (opsi dapat dimatikan).</li>
+<li>Klik <span class="tombol">Simpan sebagai paket</span>. Tab PAKET, STATION, dan RUBRIK terisi otomatis. Terakhir, isi Kode Paket tersebut pada periode di tab PERIODE.</li>
+</ol>
+<figure><img src="img/20-impor.png" style="width:125mm"><figcaption>Gambar 4.1 Pratinjau impor rubrik dari template soal</figcaption></figure>
+<div class="kotak awas"><b class="judul">Agar terbaca dengan baik</b><p>Gunakan template soal sesuai pedoman tanpa mengubah susunan kolom tabel rubrik (NO, Kompetensi, Skor = 0, Skor = 1, Skor = 2, Skor = 3, Bobot). Satu file berisi satu station. Sub-butir bernomor 1.1, 1.2, dst. dibaca sebagai butir tersendiri dengan judul induknya.</p></div>
+<h3>b. Paket belum terkunci: edit langsung</h3>
+<ul>
+<li>Ubah teks <b>Kompetensi</b> atau <b>Skor 0–3</b> serta angka <b>Bobot</b> langsung di tab RUBRIK.</li>
+<li>Untuk menambah butir, sisipkan baris dengan Kode Paket dan No Station yang sama, lalu beri No Butir berikutnya (maksimal 8 butir per station). Untuk menghapus butir, hapus barisnya lalu rapikan kembali penomoran.</li>
+<li>Gunakan <b>Data → Buat filter</b> untuk menyaring per paket dan per station.</li>
+<li>Setelah diubah, penguji harus memilih menu <b>Muat ulang data peserta &amp; rubrik</b> (atau keluar lalu login kembali), karena rubrik tersimpan di perangkat.</li>
+</ul>
+<h3>c. Paket sudah terkunci atau untuk periode baru: buat paket baru secara manual</h3>
+<ol class="langkah">
+<li>Tab <b>PAKET</b>: tambahkan baris, misalnya <code>D3-2027 | D3 | Rubrik periode 2027 | TIDAK</code>.</li>
+<li>Tab <b>STATION</b>: salin seluruh baris paket lama (8 baris D3 atau 9 baris Sarjana Terapan), tempel di bawahnya, ganti Kode Paket menjadi <code>D3-2027</code>, lalu sesuaikan judul/kasus.</li>
+<li>Tab <b>RUBRIK</b>: salin seluruh baris paket lama, ganti Kode Paket, lalu edit isi rubrik.</li>
+<li>Tab <b>PERIODE</b>: isi Kode Paket periode baru dengan <code>D3-2027</code>.</li>
+</ol>
+<div class="kotak bahaya"><b class="judul">Jangan ubah paket yang terkunci</b><p>Rekap dihitung menggunakan bobot yang tercatat di Sheet. Mengubah bobot paket yang sudah dipakai akan mengubah hasil periode lama. Untuk perubahan apa pun pada paket terkunci, buatlah paket baru.</p></div>
+
+<h2>4.7 Data Contoh untuk Uji Coba</h2>
+<p>Muat ulang Google Sheet hingga menu <b>OSCE</b> muncul, lalu pilih <b>OSCE → Isi data contoh</b>. Sistem menambahkan periode <code>UJICOBA-D3</code> dan <code>UJICOBA-STR</code>, masing-masing dengan 10 peserta contoh, serta PIN penguji contoh: D3 <b>3101, 3102, 3103, 3105, 3106, 3107</b> dan Sarjana Terapan <b>4101, 4102, 4103, 4105, 4106, 4107, 4108</b> (angka terakhir = nomor station). Hapus atau ubah status periode uji coba menjadi <code>SELESAI</code> sebelum ujian sesungguhnya.</p>
+
+<h1 class="bab"><small>BAB V</small>Panduan Penguji</h1>
+
+<h2>5.1 Persiapan Perangkat</h2>
+<ul>
+<li>Perangkat: HP, tablet, atau laptop dengan browser terbaru (Chrome, Edge, atau Safari).</li>
+<li>Jam dan zona waktu perangkat diatur <b>otomatis</b>.</li>
+<li>Baterai terisi penuh; siapkan pengisi daya.</li>
+<li>Jangan gunakan mode penyamaran/incognito.</li>
+</ul>
+
+<h2>5.2 Membuka dan Memasang Aplikasi</h2>
+<p>Buka alamat <b>aipvogiofficial.github.io/Penguji-OSCE</b>. Halaman cover menampilkan logo AIPVOGI dan tombol <span class="tombol">Masuk dengan PIN</span>. Disarankan memasang aplikasi ke layar utama agar data penilaian lebih aman:</p>
+<ul>
+<li><b>Android / laptop (Chrome, Edge)</b>: klik tombol <b>Pasang aplikasi di perangkat ini</b> pada cover, atau menu browser → <i>Instal aplikasi</i>.</li>
+<li><b>iPhone / iPad (Safari)</b>: ketuk tombol <b>Bagikan</b> lalu pilih <b>Tambahkan ke Layar Utama</b>.</li>
+</ul>
+<div class="dua">
+<figure class="hp"><img src="img/01-cover.png"><figcaption>Gambar 5.1 Halaman cover</figcaption></figure>
+<figure class="hp"><img src="img/02-login.png"><figcaption>Gambar 5.2 Halaman login</figcaption></figure>
+</div>
+
+<h2>5.3 Login</h2>
+<ol class="langkah">
+<li>Login dilakukan <b>saat ada internet</b>, idealnya ketika briefing H-1 atau sebelum sesi dimulai.</li>
+<li>Ketuk <span class="tombol">Masuk dengan PIN</span>, ketik PIN dari panitia, lalu ketuk <span class="tombol">Masuk</span>.</li>
+<li>Aplikasi mengunduh daftar peserta dan rubrik station Anda ke perangkat. Setelah itu penilaian dapat dilakukan walaupun internet terputus.</li>
+</ol>
+
+<h2>5.4 Halaman Daftar Peserta</h2>
+<p>Bagian atas menampilkan nomor station, periode, nama penguji, status koneksi, serta jumlah peserta yang sudah dan belum dinilai. Peserta diurutkan sesuai nomor urut rotasi dan dapat dicari berdasarkan nama, NIM, atau nomor urut. Arti label status:</p>
+<table>
+<thead><tr><th style="width:28%">Label</th><th>Arti</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-belum">Belum</span> / <span class="chip c-belum">Draf</span></td><td>Belum dinilai / sudah diisi sebagian tetapi belum disimpan.</td></tr>
+<tr><td><span class="chip c-antri">Belum terkirim</span></td><td>Nilai sudah disimpan dan dikunci di perangkat, menunggu internet.</td></tr>
+<tr><td><span class="chip c-ok">Terkirim ✓</span></td><td>Nilai sudah tercatat di Google Sheets.</td></tr>
+<tr><td><span class="chip c-merah">Konflik</span> / <span class="chip c-merah">Ditolak</span></td><td>Server menolak nilai (misalnya peserta sudah dinilai penguji lain). Hubungi admin.</td></tr>
+</tbody></table>
+<figure class="hp"><img src="img/03-daftar.png"><figcaption>Gambar 5.3 Daftar peserta pada station</figcaption></figure>
+
+<h2>5.5 Menginput Nilai</h2>
+<ol class="langkah">
+<li>Ketuk nama peserta yang sedang berada di station.</li>
+<li>Untuk setiap butir kompetensi, ketuk skor <b>0, 1, 2, atau 3</b>. Kriteria skor yang dipilih langsung tampil di bawah tombol. Ketuk <b>Lihat semua kriteria</b> untuk membandingkan seluruh kriteria.</li>
+<li>Label <b>Bobot</b> (kuning = 1, biru muda = 2, hijau = 3) menunjukkan tingkat kesulitan butir. Actual Mark di bagian bawah layar dihitung otomatis.</li>
+<li>Pilih <b>Global Performance</b>: Tidak Lulus, Borderline, Lulus, atau Superior, sesuai kesan umum Anda terhadap penampilan peserta.</li>
+<li>Isi catatan bila perlu, lalu ketuk <span class="tombol">Periksa &amp; Simpan</span>.</li>
+</ol>
+<div class="dua">
+<figure class="hp"><img src="img/05-form-skor.png"><figcaption>Gambar 5.4 Memilih skor butir</figcaption></figure>
+<figure class="hp"><img src="img/06-kriteria.png"><figcaption>Gambar 5.5 Melihat semua kriteria</figcaption></figure>
+</div>
+<div class="kotak info"><b class="judul">Draf otomatis</b><p>Isian yang belum disimpan tersimpan otomatis sebagai draf. Bila aplikasi tertutup atau Anda kembali ke daftar, isian tidak hilang.</p></div>
+
+<h2>5.6 Memeriksa dan Mengunci Nilai</h2>
+<p>Sesuai pedoman, penguji wajib meneliti kembali penilaian sebelum menilai peserta berikutnya. Layar <b>Periksa kembali penilaian</b> menampilkan skor, bobot, nilai per butir, Actual Mark, dan Global Performance. Centang pernyataan <i>Saya sudah meneliti kembali penilaian ini</i>, lalu ketuk <span class="tombol">Simpan &amp; Kunci</span>.</p>
+<div class="dua">
+<figure class="hp"><img src="img/07-gr.png"><figcaption>Gambar 5.6 Global performance dan catatan</figcaption></figure>
+<figure class="hp"><img src="img/08-ringkasan.png"><figcaption>Gambar 5.7 Periksa kembali sebelum disimpan</figcaption></figure>
+</div>
+<p>Setelah disimpan, nilai <b>terkunci</b> dan tidak dapat diubah dari perangkat penguji. Bila ternyata ada kesalahan, laporkan kepada admin untuk dikoreksi (Subbab 4.5).</p>
+
+<h2>5.7 Bekerja Tanpa Internet</h2>
+<p>Bila koneksi terputus, bilah status berubah menjadi <b>Offline</b>. Penilaian tetap dapat dilakukan seperti biasa; nilai disimpan di perangkat dengan label <span class="chip c-antri">Belum terkirim</span> dan bilah status menampilkan jumlah nilai yang belum terkirim. Begitu internet tersambung kembali, nilai terkirim otomatis. Anda juga dapat mengetuk <b>Kirim sekarang</b>.</p>
+<div class="dua">
+<figure class="hp"><img src="img/10-offline.png"><figcaption>Gambar 5.8 Nilai menunggu terkirim</figcaption></figure>
+<figure class="hp"><img src="img/15-terkunci.png"><figcaption>Gambar 5.9 Nilai yang sudah terkunci</figcaption></figure>
+</div>
+
+<h2>5.8 Menu Penguji</h2>
+<p>Ketuk ikon <b>⋮</b> di kanan atas untuk membuka menu:</p>
+<table>
+<thead><tr><th style="width:36%">Menu</th><th>Fungsi</th></tr></thead>
+<tbody>
+<tr><td>Kirim nilai sekarang</td><td>Mengirim seluruh nilai yang belum terkirim.</td></tr>
+<tr><td>Muat ulang data peserta &amp; rubrik</td><td>Mengambil data terbaru dari Sheet (misalnya ada peserta tambahan atau rubrik diperbarui). Memerlukan internet.</td></tr>
+<tr><td>Unduh file cadangan nilai</td><td>Menyimpan seluruh nilai di perangkat sebagai file <code>.json</code>.</td></tr>
+<tr><td>Lihat rubrik station</td><td>Menampilkan rubrik lengkap station Anda.</td></tr>
+<tr><td>Info penyimpanan perangkat</td><td>Menampilkan jumlah nilai di perangkat, status penyimpanan permanen, dan status pemasangan aplikasi.</td></tr>
+<tr><td>Keluar</td><td>Keluar dari akun. Ditolak bila masih ada nilai yang belum terkirim.</td></tr>
+</tbody></table>
+<div class="dua">
+<figure class="hp"><img src="img/11-menu.png"><figcaption>Gambar 5.10 Menu penguji</figcaption></figure>
+<figure class="hp"><img src="img/13-keluar-blok.png"><figcaption>Gambar 5.11 Keluar ditahan bila ada nilai belum terkirim</figcaption></figure>
+</div>
+
+<h2>5.9 Mengakhiri Sesi</h2>
+<ol class="langkah">
+<li>Pastikan bilah status menampilkan <b>Semua nilai sudah terkirim</b>.</li>
+<li>Pilih menu <b>Unduh file cadangan nilai</b> dan simpan file tersebut (atau serahkan kepada admin bila diminta).</li>
+<li>Isi dan tandatangani lembar penilaian manual sesuai ketentuan pedoman.</li>
+<li>Pilih menu <b>Keluar</b> bila perangkat akan dipakai penguji lain.</li>
+</ol>
+
+<h1 class="bab"><small>BAB VI</small>Panduan Admin</h1>
+
+<h2>6.1 Login Admin dan Memuat Data</h2>
+<ol class="langkah">
+<li>Pada halaman cover ketuk <span class="tombol">Masuk dengan PIN</span> dan masukkan PIN admin.</li>
+<li>Pilih periode ujian pada daftar, lalu klik <span class="tombol">Muat data</span>. Data terakhir yang dimuat tetap tersimpan sehingga dapat dilihat walaupun sedang offline.</li>
+<li>Klik <b>Muat data</b> kembali kapan saja untuk memperbarui progres.</li>
+</ol>
+
+<h2>6.2 Progres per Station</h2>
+<p>Menampilkan jumlah nilai yang sudah masuk pada setiap station beserta nama penguji yang bertugas. Bilah progres di bagian atas menunjukkan persentase seluruh nilai yang sudah masuk.</p>
+<figure class="lebar"><img src="img/16-admin-progres.png"><figcaption>Gambar 6.1 Progres per station</figcaption></figure>
+
+<h2>6.3 Matriks Peserta</h2>
+<p>Tabel peserta × station berisi Actual Mark dan Global Rating. Sel hijau berarti lulus station, merah berarti tidak lulus, dan tanda "–" berarti belum dinilai. Selama nilai belum lengkap, NBL dan status masih bersifat sementara.</p>
+<figure class="lebar"><img src="img/17-admin-matriks.png"><figcaption>Gambar 6.2 Matriks peserta</figcaption></figure>
+
+<h2>6.4 Batas Lulus (NBL)</h2>
+<p>Menampilkan untuk setiap station: skor maksimal, jumlah peserta dinilai (n), koefisien regresi a dan b, R², NBL, serta metode yang digunakan. Penjelasan perhitungan terdapat pada BAB VII.</p>
+<figure class="lebar"><img src="img/18-admin-nbl.png"><figcaption>Gambar 6.3 Nilai Batas Lulus per station</figcaption></figure>
+
+<h2>6.5 Hasil Kelulusan</h2>
+<p>Menampilkan jumlah peserta Lulus, Tidak Lulus, dan Belum Lengkap, serta daftar station yang tidak lulus untuk setiap peserta.</p>
+<figure class="lebar"><img src="img/19-admin-hasil.png"><figcaption>Gambar 6.4 Hasil kelulusan</figcaption></figure>
+
+<h2>6.6 Mengunduh Excel Rekap</h2>
+<p>Klik <span class="tombol">Unduh Excel Rekap</span>. File <code>Rekap_OSCE_[kode periode]_[tanggal-jam].xlsx</code> berisi:</p>
+<table>
+<thead><tr><th style="width:26%">Sheet</th><th>Isi</th></tr></thead>
+<tbody>
+<tr><td>Rekap</td><td>Peserta × station: AM, GR, keterangan L/TL; jumlah station lulus; status akhir; station tidak lulus.</td></tr>
+<tr><td>NBL</td><td>Skor maksimal, n, a, b, R², NBL (nilai dan persen), metode, jumlah lulus/tidak lulus per station.</td></tr>
+<tr><td>St1 … St8</td><td>Detail per station: skor setiap butir, AM, persentase, GR, status station, penguji, waktu penilaian (jam setempat), catatan, serta daftar butir.</td></tr>
+<tr><td>Info</td><td>Identitas periode, paket, jumlah peserta, kelengkapan nilai, waktu unduh, acuan, dan pengembang.</td></tr>
+</tbody></table>
+
+<h2>6.7 Mengimpor File Cadangan</h2>
+<p>Bila perangkat penguji rusak, hilang, atau tidak sempat mengirim nilai, nilai dapat dipulihkan dari file cadangan (<code>.json</code>) milik penguji:</p>
+<ol class="langkah">
+<li>Muat data periode yang bersangkutan, lalu klik <span class="tombol">Impor Cadangan</span>.</li>
+<li>Pilih file cadangan; aplikasi menampilkan nama penguji, periode, station, dan jumlah nilai. Klik <b>Impor</b>.</li>
+<li>Hasil impor menampilkan jumlah nilai baru, nilai yang sudah ada (sama), konflik, dan yang ditolak. Nilai yang sudah ada di server <b>tidak pernah ditimpa</b>.</li>
+</ol>
+
+<h1 class="bab"><small>BAB VII</small>Penilaian dan Penetapan Kelulusan</h1>
+
+<h2>7.1 Actual Mark</h2>
+<p>Setiap butir kompetensi diberi skor 0–3 dan dikalikan bobotnya. Actual Mark (AM) station adalah jumlah seluruh hasil kali tersebut.</p>
+<div class="rumus">AM = Σ (skor butir × bobot butir)&nbsp;&nbsp;&nbsp;&nbsp;Skor maksimal = Σ (3 × bobot butir)</div>
+<p>Contoh D3 station 1 (DM Tipe 2), butir berbobot 1, 3, 1, 2 dengan skor 2, 3, 1, 3: AM = 2×1 + 3×3 + 1×1 + 3×2 = <b>18</b> dari skor maksimal 21.</p>
+
+<h2>7.2 Global Rating</h2>
+<p>Penguji memberikan kesan umum terhadap penampilan peserta secara keseluruhan: <b>1</b> Tidak Lulus, <b>2</b> Borderline (batas bawah kelulusan), <b>3</b> Lulus, <b>4</b> Superior. Global rating diberikan secara independen dari penghitungan skor butir.</p>
+
+<h2>7.3 Borderline Regression Method</h2>
+<p>Untuk setiap station, aplikasi menghitung regresi linear dengan Global Rating sebagai variabel bebas dan Actual Mark sebagai variabel terikat, menggunakan data seluruh peserta pada periode tersebut:</p>
+<div class="rumus">AM = a + b · GR&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp;NBL = a + 2b</div>
+<p>NBL adalah nilai AM pada titik GR = 2 (borderline), yaitu kemampuan minimum seorang nutrisionis untuk station tersebut. Peserta <b>lulus station</b> bila AM ≥ NBL.</p>
+
+<h2>7.4 Batas Cadangan</h2>
+<p>Regresi tidak dapat diandalkan bila datanya terlalu sedikit atau tidak bervariasi. Pada kondisi berikut aplikasi memakai <b>Batas Cadangan</b> = persentase (kolom <i>Batas Cadangan (%)</i> di tab PERIODE, bawaan 60%) × skor maksimal station:</p>
+<ul>
+<li>jumlah peserta yang dinilai di station kurang dari 10 (dapat diatur melalui <code>MIN_PESERTA_BRM</code>);</li>
+<li>seluruh peserta mendapat Global Rating yang sama; atau</li>
+<li>kemiringan regresi (b) bernilai nol atau negatif.</li>
+</ul>
+<p>Metode yang dipakai untuk setiap station selalu dicantumkan pada tab NBL di aplikasi dan di Excel rekap.</p>
+
+<h2>7.5 Status Kelulusan</h2>
+<table>
+<thead><tr><th style="width:28%">Status</th><th>Kondisi</th></tr></thead>
+<tbody>
+<tr><td><b style="color:#1B7F3B">LULUS</b></td><td>Lulus pada seluruh station aktif (D3: 6 station; Sarjana Terapan: 7 station).</td></tr>
+<tr><td><b style="color:#C62828">TIDAK LULUS</b></td><td>Tidak lulus pada satu station atau lebih; station yang tidak lulus dicantumkan.</td></tr>
+<tr><td><b style="color:#B86E00">BELUM LENGKAP</b></td><td>Masih ada station yang belum dinilai.</td></tr>
+</tbody></table>
+<div class="kotak info"><b class="judul">Penetapan akhir</b><p>NBL dihitung dari seluruh peserta pada periode yang sama. Unduh Excel rekap final setelah semua nilai masuk (progres 100%). Pengumuman hasil paling lambat 2 minggu setelah ujian, dan peserta yang tidak lulus dapat mengikuti ujian ulang selama masih dalam masa studi.</p></div>
+
+<h1 class="bab"><small>BAB VIII</small>Keamanan Data dan Pemecahan Masalah</h1>
+
+<h2>8.1 Lapisan Pengaman Data</h2>
+<ol>
+<li><b>Penyimpanan perangkat</b>: setiap nilai yang dikunci langsung tersimpan di basis data browser (IndexedDB), bukan cache biasa.</li>
+<li><b>Penyimpanan permanen</b>: aplikasi meminta browser agar data tidak dibersihkan otomatis.</li>
+<li><b>Sinkronisasi berkala</b>: nilai dikirim saat disimpan, saat internet kembali, saat aplikasi dibuka, dan setiap 30 detik.</li>
+<li><b>Tanpa nilai ganda</b>: kombinasi periode + station + NIM bersifat unik; pengiriman ulang tidak menggandakan data.</li>
+<li><b>Keluar ditahan</b> selama masih ada nilai yang belum terkirim.</li>
+<li><b>File cadangan</b> yang dapat diimpor admin.</li>
+<li><b>Lembar penilaian manual</b> sesuai pedoman sebagai cadangan terakhir.</li>
+</ol>
+
+<h2>8.2 Zona Waktu</h2>
+<p>Aplikasi dapat digunakan di seluruh wilayah Indonesia. Waktu penilaian tercatat sesuai jam perangkat penguji beserta zonanya: <b>WIB</b> (Sumatera, Jawa, Kalimantan Barat dan Tengah), <b>WITA</b> (Bali, Nusa Tenggara, Kalimantan Selatan, Timur, dan Utara, Sulawesi), atau <b>WIT</b> (Maluku dan Papua). Pastikan pengaturan tanggal dan waktu perangkat penguji dalam mode otomatis.</p>
+
+<h2>8.3 Pesan Galat dan Penyelesaiannya</h2>
+<table>
+<thead><tr><th style="width:38%">Pesan / gejala</th><th>Penyebab dan penyelesaian</th></tr></thead>
+<tbody>
+<tr><td>Sheet "PENGUJI" tidak ditemukan. Jalankan fungsi setup terlebih dahulu.</td><td>Fungsi <code>setup</code> belum dijalankan di Apps Script. Lihat Subbab 3.1.</td></tr>
+<tr><td>PIN tidak dikenali atau tidak aktif.</td><td>PIN salah ketik, belum ada di tab PENGUJI, atau kolom Aktif = TIDAK.</td></tr>
+<tr><td>Periode "…" untuk PIN ini belum terdaftar di sheet PERIODE.</td><td>Kode Periode di tab PENGUJI tidak sama persis dengan tab PERIODE.</td></tr>
+<tr><td>Periode … tidak berstatus AKTIF.</td><td>Ubah kolom Status di tab PERIODE menjadi AKTIF.</td></tr>
+<tr><td>Station … tidak ada di paket / adalah station istirahat.</td><td>No Station penguji salah. D3: 1, 2, 3, 5, 6, 7; Sarjana Terapan: 1, 2, 3, 5, 6, 7, 8.</td></tr>
+<tr><td>Rubrik station … belum diisi.</td><td>Tab RUBRIK belum memiliki baris untuk paket dan station tersebut.</td></tr>
+<tr><td>Tidak dapat terhubung ke server.</td><td>Periksa internet. Bila sudah login sebelumnya, penilaian tetap bisa dilakukan secara offline.</td></tr>
+<tr><td>Label <span class="chip c-merah">Konflik</span></td><td>Peserta sudah dinilai di station tersebut oleh pengirim lain. Admin memeriksa tab NILAI dan menentukan nilai yang benar.</td></tr>
+<tr><td>Label <span class="chip c-merah">Ditolak</span></td><td>Data tidak valid (mis. NIM tidak terdaftar, jumlah butir berbeda karena rubrik berubah). Muat ulang data lalu simpan ulang.</td></tr>
+<tr><td>Peserta baru tidak muncul di daftar.</td><td>Penguji memilih menu <b>Muat ulang data peserta &amp; rubrik</b>.</td></tr>
+<tr><td>Muncul pemberitahuan <i>Versi baru aplikasi tersedia</i>.</td><td>Ketuk <b>Muat ulang</b> ketika tidak sedang mengisi nilai.</td></tr>
+<tr><td>Admin: tombol Unduh Excel tidak bereaksi.</td><td>Tunggu beberapa detik hingga modul Excel termuat, lalu klik kembali.</td></tr>
+</tbody></table>
+
+<h1 class="bab"><small>LAMPIRAN</small>Daftar Periksa Pelaksanaan</h1>
+
+<h2>A. H-14 sampai H-7 (Admin)</h2>
+<ul>
+<li>☐ Tab PERIODE terisi; Kode Paket dan Status AKTIF sudah benar.</li>
+<li>☐ Tab PESERTA terisi lengkap dengan nomor urut rotasi.</li>
+<li>☐ Tab PENGUJI terisi untuk seluruh station aktif, termasuk penguji eksternal dan siaga.</li>
+<li>☐ Rubrik paket sudah ditelaah; bobot sesuai.</li>
+<li>☐ Periode uji coba dinonaktifkan; PIN admin bawaan sudah diganti.</li>
+</ul>
+
+<h2>B. H-1 (Briefing Penguji)</h2>
+<ul>
+<li>☐ PIN dibagikan kepada setiap penguji secara tertutup.</li>
+<li>☐ Penguji memasang aplikasi ke layar utama dan login saat ada internet.</li>
+<li>☐ Penguji mencoba membuka satu peserta dan melihat rubrik (tanpa menyimpan).</li>
+<li>☐ Jam perangkat diatur otomatis; daya baterai dan pengisi daya tersedia.</li>
+</ul>
+
+<h2>C. Hari Pelaksanaan</h2>
+<ul>
+<li>☐ Penguji menilai setiap peserta dan memeriksa kembali sebelum mengunci.</li>
+<li>☐ Admin memantau progres per station secara berkala.</li>
+<li>☐ Di akhir sesi: semua nilai terkirim, file cadangan diunduh, lembar manual ditandatangani.</li>
+</ul>
+
+<h2>D. Pasca Ujian</h2>
+<ul>
+<li>☐ Progres 100%; nilai konflik/ditolak sudah diselesaikan.</li>
+<li>☐ Excel rekap final diunduh dan diarsipkan.</li>
+<li>☐ Status periode diubah menjadi SELESAI.</li>
+<li>☐ Hasil diumumkan paling lambat 2 minggu setelah ujian.</li>
+</ul>
+
+</body></html>

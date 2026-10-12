@@ -14,7 +14,7 @@
  * ============================================================
  */
 
-var VERSI_API = '1.0.0';
+var VERSI_API = '1.2.0';
 var MAKS_BUTIR = 8;
 
 var SKEMA = {
@@ -120,6 +120,7 @@ function proses_(req) {
   if (aksi === 'login') return aksiLogin_(req);
   if (aksi === 'simpan') return aksiSimpan_(req);
   if (aksi === 'dataAdmin') return aksiDataAdmin_(req);
+  if (aksi === 'imporPaket') return aksiImporPaket_(req);
   return { ok: false, pesan: 'Aksi tidak dikenal: ' + aksi };
 }
 
@@ -379,6 +380,61 @@ function aksiDataAdmin_(req) {
     peserta: pesertaPeriode_(periode.kode), nilai: nilaiPeriode_(periode.kode), penguji: penguji,
     diambil: new Date().toISOString()
   };
+}
+
+/* ---------------- Aksi: impor paket rubrik (dari template soal docx) ---------------- */
+
+function aksiImporPaket_(req) {
+  var p = cariPenguji_(req.pin);
+  if (!p || !isAdmin_(p)) return { ok: false, pesan: 'Hanya admin yang dapat mengimpor paket rubrik.' };
+  var kode = s_(req.kode).toUpperCase();
+  var program = s_(req.program).toUpperCase();
+  if (!/^[A-Z0-9_\-]+$/.test(kode)) return { ok: false, pesan: 'Kode paket tidak valid.' };
+  if (['D3', 'STR'].indexOf(program) < 0) return { ok: false, pesan: 'Program harus D3 atau STR.' };
+  var station = req.station || [], rubrik = req.rubrik || [], salin = (req.salinStation || []).map(Number);
+  if (!station.length) return { ok: false, pesan: 'Daftar station kosong.' };
+
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    if (baca_('PAKET').some(function (r) { return s_(r['Kode Paket']).toUpperCase() === kode; }))
+      return { ok: false, pesan: 'Kode paket ' + kode + ' sudah ada. Gunakan kode lain.' };
+
+    var aktif = station.filter(function (st) { return !st.istirahat; }).map(function (st) { return n_(st.no); });
+    var baris = rubrik.map(function (r) {
+      var b = n_(r.bobot);
+      if ([1, 2, 3].indexOf(b) < 0) throw new Error('Bobot station ' + r.station + ' butir ' + r.butir + ' harus 1-3.');
+      if (aktif.indexOf(n_(r.station)) < 0) throw new Error('Station ' + r.station + ' bukan station aktif.');
+      return [kode, n_(r.station), n_(r.butir), s_(r.kompetensi), s_(r.s0), s_(r.s1), s_(r.s2), s_(r.s3), b];
+    });
+    if (salin.length) {
+      var basis = s_(req.basis);
+      var lama = rubrikPaket_(basis).filter(function (r) { return salin.indexOf(r.station) >= 0; });
+      salin.forEach(function (no) {
+        if (!lama.some(function (r) { return r.station === no; })) throw new Error('Rubrik station ' + no + ' tidak ditemukan di paket ' + basis + '.');
+      });
+      lama.forEach(function (r) { baris.push([kode, r.station, r.butir, r.kompetensi, r.skor[0], r.skor[1], r.skor[2], r.skor[3], r.bobot]); });
+    }
+    aktif.forEach(function (no) {
+      var n = baris.filter(function (b) { return b[1] === no; }).length;
+      if (!n) throw new Error('Station ' + no + ' tidak memiliki butir rubrik.');
+      if (n > MAKS_BUTIR) throw new Error('Station ' + no + ' memiliki lebih dari ' + MAKS_BUTIR + ' butir.');
+    });
+    baris.sort(function (a, b) { return a[1] - b[1] || a[2] - b[2]; });
+
+    sheet_('PAKET').appendRow([kode, program, s_(req.keterangan) || 'Impor template soal', 'TIDAK']);
+    tambahBaris_('STATION', station.map(function (st) {
+      return [kode, n_(st.no), s_(st.judul), s_(st.kasus), st.istirahat ? 'YA' : 'TIDAK', n_(st.waktu)];
+    }));
+    tambahBaris_('RUBRIK', baris);
+    rapikan_();
+    log_('impor-paket', s_(p['Nama']), kode + ': ' + baris.length + ' butir');
+    return { ok: true, kode: kode, jumlahButir: baris.length, jumlahStation: aktif.length };
+  } catch (err) {
+    return { ok: false, pesan: String(err && err.message ? err.message : err) };
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 /* ---------------- Setup ---------------- */

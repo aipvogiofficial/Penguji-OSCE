@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var CFG = window.OSCE_CONFIG || {};
-  var VERSI_APP = '1.1.0';
+  var VERSI_APP = '1.2.0';
   var GR_LABEL = { 1: 'Tidak Lulus', 2: 'Borderline', 3: 'Lulus', 4: 'Superior' };
 
   var S = {
@@ -51,7 +51,7 @@
   }
 
   function tampil(id) {
-    ['layar-cover', 'layar-login', 'layar-penguji', 'layar-nilai', 'layar-admin'].forEach(function (x) { $(x).classList.toggle('tersembunyi', x !== id); });
+    ['layar-cover', 'layar-login', 'layar-penguji', 'layar-nilai', 'layar-admin', 'layar-impor'].forEach(function (x) { $(x).classList.toggle('tersembunyi', x !== id); });
     window.scrollTo(0, 0);
   }
 
@@ -673,6 +673,189 @@
     });
   }
 
+
+  /* ---------------- Impor rubrik dari template soal (.docx) ---------------- */
+  var STANDAR = {
+    D3: { waktu: 10, paket: 'D3-STANDAR', st: [
+      [1, 'Endokrin atau Sistem Perkemihan', 'DM Tipe 2'], [2, 'Sistem Pencernaan', 'Gastritis'], [3, 'Sistem Kardiovaskuler atau Neuromuskuler', 'Dislipidemia'],
+      [4, 'ISTIRAHAT', ''], [5, 'Masalah Gizi pada Anak dan Remaja', 'Balita Stunting'], [6, 'Masalah Gizi pada Ibu', 'Ibu Hamil KEK'],
+      [7, 'Penyelenggaraan Makanan', 'Penyelenggaraan Makanan di Rumah Sakit'], [8, 'ISTIRAHAT', '']] },
+    STR: { waktu: 12, paket: 'STR-STANDAR', st: [
+      [1, 'Endokrin', 'DM Tipe 2'], [2, 'Sistem Perkemihan', 'Gagal Ginjal Kronik (GGK)'], [3, 'Sistem Pencernaan atau Pernapasan', 'Tipoid'],
+      [4, 'ISTIRAHAT', ''], [5, 'Sistem Kardiovaskuler atau Neuromuskuler', 'Pasca Stroke'], [6, 'Masalah Gizi pada Anak dan Remaja', 'Anemia Remaja'],
+      [7, 'Masalah Gizi pada Ibu', 'Ibu Hamil Hipertensi'], [8, 'Penyelenggaraan Makanan', 'Penyelenggaraan Makanan di Katering'], [9, 'ISTIRAHAT', '']] }
+  };
+  S.imp = { program: 'D3', file: [], kasus: {} };
+
+  function impStation() { return STANDAR[S.imp.program].st.map(function (x) { return { no: x[0], judul: x[1], kasus: x[2], istirahat: x[1] === 'ISTIRAHAT' }; }); }
+  function impAktif() { return impStation().filter(function (x) { return !x.istirahat; }); }
+
+  function bukaImpor() {
+    S.imp = { program: 'D3', file: [], kasus: {} };
+    $('imp-program').value = 'D3'; $('imp-kode').value = ''; $('imp-ket').value = ''; $('imp-salin').checked = true;
+    renderImpor(); tampil('layar-impor');
+  }
+
+  function impValidasi() {
+    var galat = [], aktif = impAktif(), salin = $('imp-salin').checked;
+    var kode = $('imp-kode').value.trim();
+    if (!kode) galat.push('Kode paket belum diisi.');
+    else if (!/^[A-Za-z0-9_\-]+$/.test(kode)) galat.push('Kode paket hanya boleh huruf, angka, tanda - atau _.');
+    if (!S.imp.file.length) galat.push('Belum ada file soal.');
+    S.imp.file.forEach(function (f) {
+      f.galat = [];
+      if (f.gagal) { f.galat.push(f.gagal); return; }
+      if (!f.station) f.galat.push('Nomor station belum ditentukan.');
+      else if (!aktif.some(function (a) { return a.no === f.station; })) f.galat.push('Station ' + f.station + ' bukan station aktif ' + (S.imp.program === 'D3' ? 'D3' : 'Sarjana Terapan') + '.');
+      else if (S.imp.file.filter(function (g) { return g.station === f.station; }).length > 1) f.galat.push('Lebih dari satu file untuk station ' + f.station + '.');
+      var dipakai = f.butir.filter(function (b) { return b.pakai; });
+      if (!dipakai.length) f.galat.push('Tidak ada butir rubrik yang dipakai.');
+      if (dipakai.length > 8) f.galat.push('Maksimal 8 butir per station (sekarang ' + dipakai.length + ').');
+      dipakai.forEach(function (b, i) {
+        if (!b.bobot) f.galat.push('Bobot butir ' + (i + 1) + ' belum diisi.');
+        if (b.skor.some(function (x) { return !x; })) f.galat.push('Kriteria skor butir ' + (i + 1) + ' ada yang kosong.');
+        if (!b.kompetensi) f.galat.push('Nama kompetensi butir ' + (i + 1) + ' kosong.');
+      });
+      f.peringatan.forEach(function (w) { f.galat.push(w); });
+    });
+    var tanpaFile = aktif.filter(function (a) { return !S.imp.file.some(function (f) { return f.station === a.no; }); });
+    if (tanpaFile.length && !salin) galat.push('Station ' + tanpaFile.map(function (a) { return a.no; }).join(', ') + ' belum memiliki file.');
+    S.imp.file.forEach(function (f) { if (f.galat.length) galat.push(f.nama + ': ' + f.galat[0]); });
+    return galat;
+  }
+
+  function renderImpor() {
+    var aktif = impAktif(), salin = $('imp-salin').checked;
+    var galat = impValidasi();
+    var opsiSt = function (pilih) {
+      return '<option value="">– pilih station –</option>' + aktif.map(function (a) { return '<option value="' + a.no + '"' + (a.no === pilih ? ' selected' : '') + '>Station ' + a.no + ' · ' + esc(a.kasus) + '</option>'; }).join('');
+    };
+    var kartuFile = function (f, i) {
+      var html = '<div class="imp-file">📄 ' + esc(f.nama) + (f.sumberStation ? ' · nomor station dari ' + esc(f.sumberStation) : '') + '</div>';
+      html += '<div class="imp-kepala"><select data-imp="station" data-f="' + i + '">' + opsiSt(f.station) + '</select><button class="btn btn-garis btn-kecil" data-imp="hapus" data-f="' + i + '">Hapus file</button></div>';
+      f.galat.forEach(function (g) { html += '<div class="imp-galat">' + esc(g) + '</div>'; });
+      if (f.butir.length) {
+        var nomor = 0;
+        html += '<table class="imp-butir"><tbody>' + f.butir.map(function (b, j) {
+          if (b.pakai) nomor++;
+          return '<tr class="' + (b.pakai ? '' : 'mati') + '"><td style="width:30px"><input type="checkbox" data-imp="pakai" data-f="' + i + '" data-b="' + j + '"' + (b.pakai ? ' checked' : '') + ' title="Pakai butir ini"></td>' +
+            '<td style="width:30px"><b>' + (b.pakai ? nomor : '–') + '</b></td>' +
+            '<td>' + esc(b.kompetensi) + (b.alternatif ? '<span class="tag-alt">alternatif</span>' : '') +
+            '<details><summary>Kriteria skor 0–3</summary>' + b.skor.map(function (t, k) { return '<div><b>Skor ' + k + ':</b> ' + esc(t || '(kosong)') + '</div>'; }).join('') + '</details></td>' +
+            '<td style="width:96px">Bobot<br><select data-imp="bobot" data-f="' + i + '" data-b="' + j + '" class="' + (b.bobot ? '' : 'kosong') + '"><option value="">–</option><option' + (b.bobot === 1 ? ' selected' : '') + '>1</option><option' + (b.bobot === 2 ? ' selected' : '') + '>2</option><option' + (b.bobot === 3 ? ' selected' : '') + '>3</option></select></td></tr>';
+        }).join('') + '</tbody></table>';
+        var maks = f.butir.filter(function (b) { return b.pakai; }).reduce(function (t, b) { return t + 3 * (b.bobot || 0); }, 0);
+        html += '<div class="catatan-kecil" style="margin-top:6px">Skor maksimal station: <b>' + maks + '</b></div>';
+      }
+      return html;
+    };
+
+    var out = '';
+    var tanpaSt = S.imp.file.map(function (f, i) { return { f: f, i: i }; }).filter(function (x) { return !x.f.station || !aktif.some(function (a) { return a.no === x.f.station; }) || S.imp.file.filter(function (g) { return g.station === x.f.station; }).length > 1; });
+    if (tanpaSt.length) {
+      out += '<div class="panel"><h3>Perlu ditindaklanjuti</h3><p class="catatan-kecil" style="margin:0">Tentukan nomor station untuk file berikut.</p></div>';
+      tanpaSt.forEach(function (x) { out += '<div class="kartu-imp galat">' + kartuFile(x.f, x.i) + '</div>'; });
+    }
+    if (S.imp.file.length) out += '<div class="panel" style="margin-bottom:10px"><h3 style="margin:0">3. Pratinjau per station</h3></div>';
+    impStation().forEach(function (st) {
+      if (!S.imp.file.length) return;
+      if (st.istirahat) { out += '<div class="kartu-imp istirahat"><div class="imp-kepala"><span class="no">' + st.no + '</span><span class="judul">Station istirahat</span></div></div>'; return; }
+      var idx = -1;
+      S.imp.file.forEach(function (f, i) { if (f.station === st.no && S.imp.file.filter(function (g) { return g.station === st.no; }).length === 1) idx = i; });
+      var kasus = S.imp.kasus[st.no] !== undefined ? S.imp.kasus[st.no] : st.kasus;
+      var kelas = idx >= 0 ? (S.imp.file[idx].galat.length ? 'galat' : '') : (salin ? 'standar' : 'galat');
+      out += '<div class="kartu-imp ' + kelas + '"><div class="imp-kepala"><span class="no">' + st.no + '</span><span class="judul">' + esc(st.judul) + '</span></div>' +
+        '<div class="imp-kasus">Kasus <input data-imp="kasus" data-st="' + st.no + '" value="' + esc(kasus) + '"></div>';
+      if (idx >= 0) out += kartuFile(S.imp.file[idx], idx);
+      else out += '<div class="catatan-kecil">' + (salin ? 'Tidak ada file — memakai rubrik paket standar (' + STANDAR[S.imp.program].paket + ').' : '<span style="color:var(--merah)">Belum ada file untuk station ini.</span>') + '</div>';
+      out += '</div>';
+    });
+    $('imp-hasil').innerHTML = out;
+    var siap = !galat.length;
+    $('btn-simpan-paket').disabled = !siap;
+    var nFile = S.imp.file.length, nButir = S.imp.file.reduce(function (t, f) { return t + f.butir.filter(function (b) { return b.pakai; }).length; }, 0);
+    $('imp-status').innerHTML = !nFile ? 'Belum ada file' : (siap ? '<span style="color:var(--hijau)">Siap disimpan</span> · ' + nFile + ' file, ' + nButir + ' butir'
+      : '<span style="color:var(--merah)">' + galat.length + ' hal perlu diperbaiki</span>');
+    $('imp-status').title = galat.join('\n');
+  }
+
+  function bacaFileDocx(files) {
+    if (!window.JSZip) { toast('Modul pembaca docx belum termuat, coba lagi.', 'galat'); return; }
+    var arr = Array.prototype.slice.call(files);
+    toast('Membaca ' + arr.length + ' file…');
+    Promise.all(arr.map(function (f) {
+      return ImporDocx.bacaDocx(f).catch(function (e) { return { nama: f.name, station: null, sumberStation: '', butir: [], peringatan: [], gagal: 'Gagal dibaca: ' + e.message }; });
+    })).then(function (hasil) {
+      hasil.forEach(function (h) {
+        h.galat = [];
+        S.imp.file = S.imp.file.filter(function (f) { return f.nama !== h.nama; });
+        S.imp.file.push(h);
+      });
+      S.imp.file.sort(function (a, b) { return (a.station || 99) - (b.station || 99); });
+      renderImpor();
+      toast(hasil.length + ' file dibaca.', 'sukses');
+    });
+  }
+
+  function simpanPaket() {
+    var galat = impValidasi(); if (galat.length) { toast(galat[0], 'galat', 4000); return; }
+    var prog = S.imp.program, kode = $('imp-kode').value.trim().toUpperCase();
+    var station = impStation().map(function (st) {
+      return { no: st.no, judul: st.judul, kasus: st.istirahat ? '' : (S.imp.kasus[st.no] !== undefined ? S.imp.kasus[st.no] : st.kasus), istirahat: st.istirahat, waktu: STANDAR[prog].waktu };
+    });
+    var rubrik = [], salin = [];
+    impAktif().forEach(function (st) {
+      var f = S.imp.file.filter(function (x) { return x.station === st.no; })[0];
+      if (!f) { salin.push(st.no); return; }
+      f.butir.filter(function (b) { return b.pakai; }).forEach(function (b, i) {
+        rubrik.push({ station: st.no, butir: i + 1, kompetensi: b.kompetensi, s0: b.skor[0], s1: b.skor[1], s2: b.skor[2], s3: b.skor[3], bobot: b.bobot });
+      });
+    });
+    var ringkas = impAktif().map(function (st) {
+      var f = S.imp.file.filter(function (x) { return x.station === st.no; })[0];
+      return 'St ' + st.no + ': ' + (f ? f.butir.filter(function (b) { return b.pakai; }).length + ' butir dari file' : 'rubrik standar');
+    }).join('<br>');
+    konfirmasi('Simpan paket ' + kode + '?', 'Program ' + (prog === 'D3' ? 'Diploma III Gizi' : 'Sarjana Terapan Gizi') + '.<br>' + ringkas, 'Simpan').then(function (ya) {
+      if (!ya) return;
+      var btn = $('btn-simpan-paket'); btn.disabled = true; btn.innerHTML = '<span class="memuat"></span> Menyimpan…';
+      api('imporPaket', { pin: S.sesi.pin, kode: kode, program: prog, keterangan: $('imp-ket').value.trim(), basis: STANDAR[prog].paket, salinStation: salin, station: station, rubrik: rubrik })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.pesan);
+          var d = dialog('<h3>Paket ' + esc(kode) + ' tersimpan</h3><p class="sub">' + res.jumlahButir + ' butir rubrik untuk ' + res.jumlahStation + ' station aktif telah ditulis ke tab PAKET, STATION, dan RUBRIK.</p>' +
+            '<div class="kotak-info" style="background:var(--latar);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px">Langkah berikutnya: di tab <b>PERIODE</b> Google Sheet, isi kolom <b>Kode Paket</b> periode ujian dengan <b>' + esc(kode) + '</b>.</div>' +
+            '<button class="btn btn-utama btn-penuh" data-x="1">Selesai</button>', { wajib: true });
+          d.querySelector('[data-x]').addEventListener('click', function () { tutupDialog(); tampil('layar-admin'); });
+        })
+        .catch(function (e) { toast(e.message, 'galat', 5000); })
+        .then(function () { btn.textContent = 'Simpan sebagai paket'; renderImpor(); });
+    });
+  }
+
+  function initImpor() {
+    $('btn-buka-impor').addEventListener('click', bukaImpor);
+    $('btn-tutup-impor').addEventListener('click', function () { tampil('layar-admin'); });
+    $('btn-pilih-docx').addEventListener('click', function () { $('file-docx').click(); });
+    $('file-docx').addEventListener('change', function (e) { if (e.target.files.length) bacaFileDocx(e.target.files); e.target.value = ''; });
+    $('imp-program').addEventListener('change', function () { S.imp.program = this.value; S.imp.kasus = {}; renderImpor(); });
+    $('imp-kode').addEventListener('input', renderImpor);
+    $('imp-salin').addEventListener('change', renderImpor);
+    $('btn-simpan-paket').addEventListener('click', simpanPaket);
+    var w = $('imp-hasil');
+    w.addEventListener('change', function (e) {
+      var t = e.target, jenis = t.getAttribute('data-imp'); if (!jenis) return;
+      var f = S.imp.file[+t.getAttribute('data-f')];
+      if (jenis === 'station') f.station = t.value ? +t.value : null;
+      if (jenis === 'pakai') f.butir[+t.getAttribute('data-b')].pakai = t.checked;
+      if (jenis === 'bobot') f.butir[+t.getAttribute('data-b')].bobot = t.value ? +t.value : null;
+      if (jenis === 'kasus') { S.imp.kasus[+t.getAttribute('data-st')] = t.value; return; }
+      renderImpor();
+    });
+    w.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-imp="hapus"]'); if (!t) return;
+      S.imp.file.splice(+t.getAttribute('data-f'), 1); renderImpor();
+    });
+  }
+
   /* ---------------- Service worker ---------------- */
   function initSW() {
     if (!('serviceWorker' in navigator)) return;
@@ -696,7 +879,7 @@
 
   /* ---------------- Mulai ---------------- */
   function mulai() {
-    initCover(); initPenguji(); initForm(); initAdmin(); initSW();
+    initCover(); initPenguji(); initForm(); initAdmin(); initImpor(); initSW();
     window.addEventListener('online', function () { renderBilahSinkron(); sinkron(); });
     window.addEventListener('offline', renderBilahSinkron);
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') sinkron(); });

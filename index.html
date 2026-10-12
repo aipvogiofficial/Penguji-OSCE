@@ -148,6 +148,11 @@
       </div>
       <div class="catatan-kecil" id="ad-status" style="margin-top:8px"></div>
     </div>
+    <div class="panel">
+      <h3>Paket rubrik</h3>
+      <p class="catatan-kecil" style="margin:0 0 10px">Buat paket rubrik baru langsung dari file template soal (.docx) yang disusun dosen. Hanya nomor station dan tabel rubrik yang dibaca; file tidak diunggah ke mana pun.</p>
+      <button class="btn btn-garis" id="btn-buka-impor">Impor Rubrik dari Template Soal (.docx)</button>
+    </div>
     <div id="ad-isi" class="tersembunyi">
       <div class="panel">
         <div class="baris-form" style="justify-content:space-between">
@@ -175,6 +180,44 @@
   </main>
 </section>
 
+<!-- ================= IMPOR RUBRIK ================= -->
+<section id="layar-impor" class="layar tersembunyi">
+  <header class="topbar">
+    <div class="topbar-baris">
+      <button class="btn-ikon" id="btn-tutup-impor" aria-label="Kembali">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="topbar-judul"><div class="kecil">Admin · Paket rubrik</div><div class="besar">Impor Rubrik dari Template Soal</div></div>
+    </div>
+  </header>
+  <main class="konten">
+    <div class="panel">
+      <h3>1. Data paket</h3>
+      <div class="grid-form">
+        <label>Program<select id="imp-program"><option value="D3">Diploma III Gizi (8 station)</option><option value="STR">Sarjana Terapan Gizi (9 station)</option></select></label>
+        <label>Kode paket baru<input id="imp-kode" placeholder="mis. D3-2027-A" autocomplete="off"></label>
+        <label class="lebar">Keterangan<input id="imp-ket" placeholder="mis. Rubrik OSCE D3 Periode I 2027" autocomplete="off"></label>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>2. File soal (.docx)</h3>
+      <p class="catatan-kecil" style="margin:0 0 10px">Pilih semua file soal sekaligus (satu file per station). File dibaca di perangkat ini saja — hanya <b>nomor station</b> dan <b>tabel rubrik</b> yang diambil; skenario dan instruksi tidak dibaca.</p>
+      <div class="baris-form">
+        <button class="btn btn-utama" id="btn-pilih-docx">Pilih file soal</button>
+        <input type="file" id="file-docx" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple class="tersembunyi">
+        <label class="cek-kecil"><input type="checkbox" id="imp-salin" checked> Station tanpa file memakai rubrik paket standar</label>
+      </div>
+    </div>
+    <div id="imp-hasil"></div>
+  </main>
+  <footer class="kaki-tetap">
+    <div class="isi">
+      <div class="total-langsung"><div class="kecil">Status</div><div id="imp-status" style="font-weight:700">Belum ada file</div></div>
+      <button class="btn btn-utama" id="btn-simpan-paket" disabled>Simpan sebagai paket</button>
+    </div>
+  </footer>
+</section>
+
 <div id="dialog-wadah"></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="banner-update" class="tersembunyi">Versi baru aplikasi tersedia. <button class="btn btn-utama btn-kecil" id="btn-update">Muat ulang</button></div>
@@ -183,6 +226,8 @@
 <script src="js/db.js"></script>
 <script src="js/rekap.js"></script>
 <script src="vendor/xlsx.full.min.js" defer></script>
+<script src="vendor/jszip.min.js" defer></script>
+<script src="js/impor-docx.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

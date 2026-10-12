@@ -1,6 +1,6 @@
 /* Service worker: menyimpan seluruh berkas aplikasi agar bisa dibuka tanpa internet.
  * Naikkan VERSI setiap kali ada perubahan berkas agar perangkat penguji mendapat versi terbaru. */
-var VERSI = 'penguji-osce-v1.1.0';
+var VERSI = 'penguji-osce-v1.2.0';
 var BERKAS = [
   './',
   './index.html',
@@ -10,6 +10,8 @@ var BERKAS = [
   './js/db.js',
   './js/rekap.js',
   './js/app.js',
+  './js/impor-docx.js',
+  './vendor/jszip.min.js',
   './vendor/xlsx.full.min.js',
   './icons/icon-192.png',
   './icons/icon-512.png',

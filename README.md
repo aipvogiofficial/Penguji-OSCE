@@ -123,6 +123,10 @@ Aplikasi bisa dipakai di seluruh Indonesia tanpa pengaturan tambahan:
 
 Pastikan jam & zona waktu perangkat penguji diatur **otomatis** (Pengaturan → Tanggal & waktu → otomatis).
 
+## Impor rubrik dari template soal (.docx)
+
+Admin → panel **Paket rubrik** → **Impor Rubrik dari Template Soal (.docx)**. Pilih program, isi kode paket baru, lalu pilih semua file soal (satu file per station). Aplikasi hanya membaca **nomor station** dan **tabel Rubrik Penilaian** (kompetensi, skor 0–3, bobot); file dibaca di browser admin dan tidak diunggah ke mana pun. Periksa pratinjau, lengkapi yang bertanda merah, lalu **Simpan sebagai paket** — tab PAKET, STATION, RUBRIK terisi otomatis. Station tanpa file dapat memakai rubrik paket standar.
+
 ## Mengganti rubrik / kasus (paket ujian)
 
 Rubrik tidak ada di kode, melainkan di Sheet, dikelompokkan dalam **paket**.
@@ -143,7 +147,7 @@ Rubrik standar dibuat dari Lampiran III pedoman, dengan penyesuaian:
 
 ## Memperbarui aplikasi
 
-Setelah mengubah berkas aplikasi di GitHub, naikkan versi pada baris `var VERSI = 'penguji-osce-v1.1.0'` di `sw.js` (mis. `v1.0.1`). Perangkat penguji akan menampilkan banner *Versi baru tersedia → Muat ulang*.
+Setelah mengubah berkas aplikasi di GitHub, naikkan versi pada baris `var VERSI = 'penguji-osce-v1.2.0'` di `sw.js` (mis. `v1.0.1`). Perangkat penguji akan menampilkan banner *Versi baru tersedia → Muat ulang*.
 
 ## Pengembangan & uji
 
